@@ -1,0 +1,55 @@
+{
+  "name": "newsExplorer",
+  "version": "0.0.1",
+  "description": "service where you can find news and save them in your account",
+  "main": "'./js/main.js'",
+  "scripts": {
+    "start": "rimraf dist && cross-env NODE_ENV=production webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --watch",
+    "deploy_gh": "cross-env NODE_ENV=production gh-pages -d dist",
+    "deploy": "npm run build && scp -r ./dist/* ra404@0.0.0.0:/home/ra404/newsExplorer"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RA404/newsExplorer.git"
+  },
+  "author": "RA404",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RA404/newsExplorer/issues"
+  },
+  "homepage": "https://github.com/RA404/newsExplorer.git",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "autoprefixer": "^9.8.0",
+    "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.2",
+    "css-loader": "^3.5.3",
+    "cssnano": "^4.1.10",
+    "file-loader": "^6.0.0",
+    "gh-pages": "^2.2.0",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "image-webpack-loader": "^6.0.0",
+    "lodash": "^4.17.15",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "resolve-url": "^0.2.1",
+    "resolve-url-loader": "^3.1.1",
+    "rimraf": "^3.0.2",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-md5-hash": "0.0.6"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "core-js": "^3.6.5",
+    "resolve-cwd": "^3.0.0"
+  }
+}
