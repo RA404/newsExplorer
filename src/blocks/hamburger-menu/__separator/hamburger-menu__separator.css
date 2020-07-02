@@ -1,0 +1,22 @@
+.hamburger-menu__separator {
+  top: 80px;
+  left: 0;
+  position: fixed;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  width: 100%;
+  margin: 0;
+  z-index: 9;
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .hamburger-menu__separator {
+    top: 66px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hamburger-menu__separator {
+    top: 56px;
+  }
+}

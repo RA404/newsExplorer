@@ -1,0 +1,19 @@
+.news-grid__date {
+  color: #B6BCBF;
+  font-size: 18px;
+  line-height: 24px;
+  font-family: 'Source Sans Pro','Helvetica Neue', Arial, sans-serif;
+  margin: 0 0 12px 24px;
+}
+
+@media (max-width: 1240px) {
+  .news-grid__date {
+    margin: 0 0 12px 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .news-grid__date {
+    margin: 0 0 10px 16px;
+  }
+}

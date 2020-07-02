@@ -1,0 +1,14 @@
+.logo__text {
+  font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+  color: #000;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (max-width: 425px) {
+  .logo__text {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

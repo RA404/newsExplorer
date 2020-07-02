@@ -1,0 +1,15 @@
+.news-grid__source {
+  color: #B6BCBF;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+  margin: 0 0 24px 24px;
+  position: absolute;
+  bottom: 0;
+}
+
+@media (max-width: 1240px) {
+  .news-grid__source {
+    margin: 0 0 16px 16px;
+  }
+}

@@ -1,0 +1,22 @@
+@import url('./__text/logo__text.css');
+@import url('./__text/_theme/logo__text_theme_dark.css');
+
+.logo {
+  margin-left: 104px;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+  z-index: 1;
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .logo {
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    margin-left: 16px;
+  }
+}

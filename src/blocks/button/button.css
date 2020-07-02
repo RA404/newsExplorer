@@ -1,0 +1,35 @@
+@import url('./__text/button__text.css');
+
+.button {
+  border-radius: 80px;
+  background-color: #fff;
+  opacity: 1;
+  align-items: center;
+  height: 64px;
+  width: 290px;
+  margin: auto;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  border: 0;
+}
+
+.button:hover {
+  background-color: #E5E5E5;
+}
+
+@media (max-width: 1024px) {
+  .button {
+    height: 56px;
+    width: 242px;
+  }
+}
+
+@media (max-width: 480px) {
+  .button {
+    height: 56px;
+    width: 290px;
+  }
+}

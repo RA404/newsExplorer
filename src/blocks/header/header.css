@@ -1,0 +1,30 @@
+@import url('../logo/logo.css');
+@import url('../menu/menu.css');
+@import url('../hamburger-menu/hamburger-menu.css');
+@import url('../authorization-button/authorization-button.css');
+@import url('../authorization-button/_logout/authorization-button_logout.css');
+@import url('../authorization-button/_login/authorization-button_login.css');
+@import url('../authorization-button/_theme/authorization-button_theme_dark.css');
+
+.header {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  border-bottom: 1px solid rgba(196, 196, 196, 0.01);
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  align-items: center;
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .header {
+    height: 66px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    height: 56px;
+  }
+}

@@ -1,0 +1,24 @@
+@import url('./_theme/content-subtitle_theme_dark.css');
+@import url('./_theme/content-subtitle_theme_light.css');
+
+.content-subtitle {
+  font-family: 'Roboto','Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 64px 0;
+  max-width: 545px;
+}
+
+@media (min-width: 481px) and (max-width: 1024px){
+  .content-subtitle{
+    margin: 0 16px 48px 0;
+    max-width: 452px;
+  }
+}
+
+@media (max-width: 480px){
+  .content-subtitle{
+    margin: 0 0 122px 0;
+    max-width: 288px;
+  }
+}

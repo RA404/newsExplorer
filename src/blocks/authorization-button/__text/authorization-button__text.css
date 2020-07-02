@@ -1,0 +1,9 @@
+@import url('./_status/authorization-button__text_status_logged-in.css');
+@import url('./_status/authorization-button__text_status_logged-out.css');
+
+.authorization-button__text {
+  font-family: 'Roboto','Helvetica Neue', Arial, sans-serif;
+  color: #1A1B22;
+  font-size: 18px;
+  line-height: 24px;
+}

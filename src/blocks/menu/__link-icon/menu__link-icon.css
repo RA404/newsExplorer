@@ -1,0 +1,9 @@
+@import url('../__icon/menu__icon.css');
+
+.menu__link-icon {
+  margin-right: 28px;
+}
+
+.menu__link-icon:last-child {
+  margin: 0;
+}

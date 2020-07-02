@@ -1,0 +1,33 @@
+.content-title_type_news-title {
+  font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+  font-size: 26px;
+  line-height: 30px;
+  max-width: 352px;
+  margin: 0 0 16px 24px;
+  max-height: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 1240px) {
+  .content-title_type_news-title {
+    font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+    font-size: 22px;
+    line-height: 24px;
+    max-width: 192px;
+    margin: 0 0 10px 16px;
+    max-height: 72px;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-title_type_news-title {
+    font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+    font-size: 22px;
+    line-height: 26px;
+    max-width: 256px;
+    max-height: 84px;
+    text-overflow: ellipsis;
+  }
+}

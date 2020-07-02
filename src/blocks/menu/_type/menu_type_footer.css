@@ -1,0 +1,12 @@
+.menu_type_footer {
+  display: flex;
+}
+
+@media (max-width: 767px) {
+  .menu_type_footer {
+    justify-content: space-between;
+    width: 85%;
+    align-items: flex-start;
+    margin: 0;
+  }
+}

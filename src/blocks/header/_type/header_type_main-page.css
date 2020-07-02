@@ -1,0 +1,26 @@
+.header_type_main-page {
+  background-image: url('../../../images/searchBackground.jpg');
+  background-position: center -52px;
+  background-size: 100% auto;
+}
+
+@media (max-width: 1024px) {
+  .header_type_main-page {
+    background-position: center 0px;
+    background-size: 100% auto;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 719px) {
+  .header_type_main-page {
+    background-position: center 0px;
+    background-size: 155% auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .header_type_main-page {
+    background-position: center 0px;
+    background-size: 310% auto;
+  }
+}

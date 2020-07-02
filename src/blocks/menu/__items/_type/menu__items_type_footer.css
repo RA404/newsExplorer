@@ -1,0 +1,8 @@
+@media (max-width: 767px) {
+  .menu__items_type_footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 74px;
+  }
+}

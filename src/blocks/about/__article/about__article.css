@@ -1,0 +1,15 @@
+@import url('../../content-paragraph/_type/content-paragraph_type_article.css');
+
+.about__article {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin-left: 4%;
+  width: 50%;
+}
+
+@media (max-width: 580px) {
+  .about__article {
+    margin: 0;
+  }
+}

@@ -1,0 +1,21 @@
+@import url('../content-paragraph/_type/content-paragraph_type_footer.css');
+@import url('../menu/_type/menu_type_footer.css');
+@import url('../menu/__item/_type/menu__item_type_footer.css');
+@import url('../menu/__items/_type/menu__items_type_footer.css');
+
+.footer {
+  background-color: #E5E5E5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+@media (max-width: 767px) {
+  .footer {
+    flex-direction: column-reverse;
+    height: 134px;
+    padding: 20px 0 70px 0;
+  }
+}

@@ -1,0 +1,25 @@
+@import url('../authorization-button/__text/authorization-button__text.css');
+@import url('../authorization-button/__text/_theme/authorization-button__text_theme_dark.css');
+@import url('../authorization-button/__image/authorization-button__image.css');
+@import url('../authorization-button/_logout/authorization-button_logout.css');
+@import url('../authorization-button/__container/authorization-button__container.css');
+
+.authorization-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 48px;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  background: rgba(255, 255, 255, 0);
+  padding: 0;
+}
+
+.authorization-button:focus {
+  outline: none;
+}
+
+.authorization-button:hover {
+  cursor: pointer;
+}

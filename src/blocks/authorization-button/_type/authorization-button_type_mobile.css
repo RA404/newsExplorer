@@ -1,0 +1,10 @@
+.authorization-button_type_mobile {
+  width: 288px;
+  margin: 0 0 24px 16px;
+}
+
+@media (min-width: 481px) {
+  .authorization-button_type_mobile {
+    margin: 0 0 24px 40px;
+  }
+}

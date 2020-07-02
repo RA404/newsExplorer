@@ -1,0 +1,28 @@
+@import url('./_theme/content-title_theme_dark.css');
+@import url('./_theme/content-title_theme_light.css');
+
+.content-title {
+  font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+  font-size: 60px;
+  line-height: 64px;
+  margin-bottom: 32px;
+  max-width: 608px;
+}
+
+@media (min-width: 481px) and (max-width: 1024px) {
+  .content-title {
+    font-size: 36px;
+    line-height: 40px;
+    margin: 0 16px 16px 0;
+    max-width: 452px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-title {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 16px;
+    max-width: 288px;
+  }
+}

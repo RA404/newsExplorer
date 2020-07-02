@@ -1,0 +1,28 @@
+@import url('../__search-string/search__search-string.css');
+@import url('../__search-button/search__search-button.css');
+
+.search__form {
+  white-space: nowrap;
+}
+
+@media (min-width: 577px) and (max-width: 1024px) {
+  .search__form {
+    margin-right: 16px;
+    width: 452px;
+    position: relative;
+  }
+}
+
+@media (max-width: 576px) {
+  .search__form {
+    width: 420px;
+    position: relative;
+  }
+}
+
+@media (max-width: 480px){
+  .search__form {
+    white-space: normal;
+    width: 288px;
+  }
+}
