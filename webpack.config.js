@@ -83,4 +83,8 @@ module.exports = {
       'NODE_ENV':JSON.stringify(process.env.NODE_ENV),
     }),
   ],
+  devServer: {
+    contentBase: './src/public',
+    port: 3000,
+  }
 };
