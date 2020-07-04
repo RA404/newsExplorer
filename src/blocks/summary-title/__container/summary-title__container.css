@@ -1,0 +1,20 @@
+@import url('../../content-title/_type/content-title_type_saved-news.css');
+
+.summary-title__container {
+  max-width: 712px;
+  margin: 40px 0 56px 104px;
+}
+
+@media (max-width: 1024px) {
+  .summary-title__container {
+    max-width: 90%;
+    margin: 24px 0 32px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary-title__container {
+    width: 288px;
+    margin: 8px 0 32px 16px;
+  }
+}

@@ -6,28 +6,25 @@
 
 .search-result__container {
   margin: 80px auto;
-  width: 1232px;
   display: flex;
   flex-direction: column;
 }
 
 @media (max-width: 1240px) {
   .search-result__container {
-    margin: 40px auto;
-    max-width: 70%;
+    margin: 40px 0 40px 80px;
   }
 }
 
 @media (max-width: 1024px) {
   .search-result__container {
-    margin: 40px auto;
-    max-width: 85%;
+    margin: 40px 0 40px 102px;
   }
 }
 
 @media (max-width: 864px) {
   .search-result__container {
-    max-width: 96%;
+    margin: 40px 0;
   }
 }
 

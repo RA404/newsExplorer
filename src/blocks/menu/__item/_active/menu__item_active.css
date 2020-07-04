@@ -1,8 +1,0 @@
-.menu__item_active::before {
-  content: '';
-}
-
-.menu__item_active::after {
-  content: '';
-  border-bottom: 3px solid #fff;
-}

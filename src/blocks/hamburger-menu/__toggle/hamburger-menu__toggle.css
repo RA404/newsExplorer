@@ -15,6 +15,18 @@
   transition-duration: 50ms;
 }
 
+.hamburger-menu__toggle:checked ~ .hamburger-menu__button > .hamburger-menu__line_theme_white {
+  transform: rotate(45deg);
+  transition-duration: 50ms;
+  background-color: #fff;
+}
+
+.hamburger-menu__toggle:checked ~ .hamburger-menu__button > .hamburger-menu__line_theme_white::after {
+  transform: rotate(90deg);
+  transition-duration: 50ms;
+  background-color: #fff;
+}
+
 .hamburger-menu__toggle:checked ~ .hamburger-menu__button {
   position: fixed;
   top: 36px;

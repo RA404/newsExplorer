@@ -2,7 +2,8 @@
 @import url('./__item/menu__item.css');
 @import url('./__link/menu__link.css');
 @import url('./__link/_theme/menu__link_theme_dark.css');
-@import url('./__item/_active/menu__item_active.css');
+@import url('./__item/_active/menu__item_active_white.css');
+@import url('./__item/_active/menu__item_active_black.css');
 @import url('./__item/_status/menu__item_status_logged-out.css');
 @import url('./__icons/menu__icons.css');
 

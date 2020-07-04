@@ -7,41 +7,166 @@
   <meta name="author" content="RA404">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>News Explorer</title>
-  <link rel="stylesheet" href="style.aa05b1a2dcbe8a84b1ae.css">
-  <link rel="shortcut icon" href="a48282d57ec0e5d9cd78749a395e2d7c.png" type="image/png">
+  <link rel="stylesheet" href="style.794c147269f696dd484b.css">
+  <link rel="shortcut icon" href="ec404a541d2d888c81c81c18cf75f308.png" type="image/png">
 </head>
   <body>
     <div class="bg">
       <div class="page">
-        <header class="header">
+        <header class="header header_type_main-page">
+          <div class="overlay"></div>
           <a class="logo" href="/">
-            <h4 class="logo__text">NewsExplorer</h4>
+            <h4 class="logo__text logo__text_theme_dark">NewsExplorer</h4>
           </a>
           <nav class="menu">
             <ul class="menu__items">
-              <li class="menu__item">
-                <a class="menu__link" href="/">Главная</a>
+              <li class="menu__item menu__item_active_white">
+                <a class="menu__link menu__link_theme_dark" href="./index.html">Главная</a>
               </li>
               <li class="menu__item">
-                <a class="menu__link" href="/news.html">Сохраненные статьи</a>
+                <a class="menu__link menu__link_theme_dark" href="./news.html">Сохраненные статьи</a>
               </li>
             </ul>
+            <button class="authorization-button authorization-button_theme_dark">
+              <div class="authorization-button__container">
+                <p class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</p>
+                <img class="authorization-button__image" src="f67f251af479ba5f3f5a099a913f6b4d.svg" alt="logout icon">
+              </div>
+              <p class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</p>
+            </button>
           </nav>
-          <button class="authorization-button authotization-button_login">
-            <p class="authorization-button__text">Грета</p>
-            <img class="authorization-button__image" src="f67f251af479ba5f3f5a099a913f6b4d.svg" alt="logout icon">
-          </button>
+          <nav class="hamburger-menu">
+            <input class="hamburger-menu__toggle" type="checkbox">
+            <label class="hamburger-menu__button" for="hamburger-menu__toggle">
+              <span class="hamburger-menu__line"></span>
+            </label>
+            <div class="hamburger-menu__container">
+              <a class="logo logo_type_open-menu" href="/">
+                <h4 class="logo__text logo__text_theme_dark">NewsExplorer</h4>
+              </a>
+              <hr class="hamburger-menu__separator">
+              <ul class="hamburger-menu__items">
+                <li class="hamburger-menu__item">
+                  <a class="hamburger-menu__link" href="/">Главная</a>
+                </li>
+                <li class="hamburger-menu__item">
+                  <a class="hamburger-menu__link" href="/news.html">Сохраненные статьи</a>
+                </li>
+              </ul>
+              <button class="authorization-button authorization-button_theme_dark authorization-button_type_mobile">
+                <div class="authorization-button__container">
+                  <p class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</p>
+                  <img class="authorization-button__image" src="f67f251af479ba5f3f5a099a913f6b4d.svg" alt="logout icon">
+                </div>
+                <p class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</p>
+              </button>
+            </div>
+          </nav>
         </header>
         <main class="main">
-          <section>
-
+          <section class="search">
+            <div class="overlay"></div>
+            <div class="search__container">
+              <h1 class="content-title content-title_theme_dark">Что в мире творится?</h1>
+              <p class="content-subtitle content-subtitle_theme_dark">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+              <form class="search__form">
+                <input class="search__search-string" type="text" placeholder="Введите тему новости">
+                <input class="search__search-button" type="submit" value="Искать">
+              </form>
+            </div>
+          </section>
+          <section class="search-result">
+            <div class="search-result__container">
+              <h2 class="content-title content-title_type_section-title">Результаты поиска</h2>
+              <div class="news-grid">
+                <figure class="news-grid__item">
+                  <div class="news-grid__flag"></div>
+                  <div class="news-grid__hint">Войдите, чтобы сохранять статьи</div>
+                  <img class="news-grid__item-image" src="1e01db0bad9cfc18050d56d0aef5f602.png" alt="Национальное достояние – парки">
+                  <figcaption class="news-grid__item-description">
+                    <p class="news-grid__date">2 августа, 2019</p>
+                    <h3 class="content-title content-title_type_news-title">Национальное достояние – парки</h3>
+                    <p class="news-grid__text">В 2016 году Америка отмечала важный юбилей:
+                      сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
+                      где и сегодня каждый может приобщиться к природе.</p>
+                    <p class="news-grid__source">Лента.ру</p>
+                  </figcaption>
+                </figure>
+                <figure class="news-grid__item">
+                  <div class="news-grid__flag news-grid__flag_type_marked"></div>
+                  <div class="news-grid__hint">Войдите, чтобы сохранять статьи</div>
+                  <img class="news-grid__item-image" src="d2cabfa7a241324688e02ae782366992.png" alt="Национальное достояние – парки">
+                  <figcaption class="news-grid__item-description">
+                    <p class="news-grid__date">2 августа, 2019</p>
+                    <h3 class="content-title content-title_type_news-title">Лесные огоньки: история одной фотографии</h3>
+                    <p class="news-grid__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики,
+                      чтобы запечатлеть ускользающую красоту одного из местных чудес природы.</p>
+                    <p class="news-grid__source">Медуза</p>
+                  </figcaption>
+                </figure>
+                <figure class="news-grid__item">
+                  <div class="news-grid__flag"></div>
+                  <div class="news-grid__hint">Войдите, чтобы сохранять статьи</div>
+                  <img class="news-grid__item-image" src="f0b2e7af7fd803103f524b980d28482a.png" alt="Национальное достояние – парки">
+                  <figcaption class="news-grid__item-description">
+                    <p class="news-grid__date">2 августа, 2019</p>
+                    <h3 class="content-title content-title_type_news-title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
+                    <p class="news-grid__text">Знаменитый фотограф снимает первозданные леса России,
+                      чтобы рассказать о необходимости их сохранения.
+                      В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
+                    <p class="news-grid__source">Риа</p>
+                  </figcaption>
+                </figure>
+              </div>
+              <button class="button">
+                <p class="button__text">Показать еще</p>
+              </button>
+            </div>
+            <div class="search-result__container search-result__container_type_preloader search-result__container_hidden">
+              <img class="search-result__preloader" src="341b5cbac4866478445a76852e9a5cce.png" alt="preloader">
+              <p class="content-paragraph content-paragraph_type_preloader">Идет поиск новостей...</p>
+            </div>
+            <div class="search-result__container search-result__container_type_not-found search-result__container_hidden">
+              <img class="search-result__not-found" src="66d435aba9e34b4f8ae983a62b19b668.png" alt="not-found">
+              <h3 class="content-title content-title_type_news-title content-title_type_not-found">Ничего не найдено</h3>
+              <p class="content-paragraph content-paragraph_type_not-found">К сожалению по вашему запросу ничего не найдено.</p>
+            </div>
+          </section>
+          <section class="about">
+            <img class="about__author" src="4e9586ea05be42e21270d69652eb1b5e.png" alt="Author photo">
+            <article class="about__article">
+              <h2 class="content-title content-title_type_section-title">Автор</h2>
+              <p class="content-paragraph content-paragraph_type_article">Это блок с описанием автора проекта. Здесь следует указать,
+                как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.</p>
+              <p class="content-paragraph content-paragraph_type_article">
+                Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились,
+                и чем можете помочь потенциальным заказчикам.</p>
+            </article>
           </section>
         </main>
         <footer class="footer">
-
+          <p class="content-paragraph content-paragraph_type_footer">© 2020 Supersite, Powered by News API</p>
+          <nav class="menu menu_type_footer">
+            <ul class="menu__items menu__items_type_footer">
+              <li class="menu__item menu__item_type_footer">
+                <a class="menu__link" href="/">Главная</a>
+              </li>
+              <li class="menu__item menu__item_type_footer">
+                <a class="menu__link" href="https://praktikum.yandex.ru/" target="_blank">Яндекс.Практикум</a>
+              </li>
+            </ul>
+            <div class="menu__icons">
+              <a class="menu__link-icon" href="https://github.com/RA404/newsExplorer" target="_blank">
+                <img class="menu__icon" src="e65a397e42d372e29955247eb24784d8.png" alt="GitHub">
+              </a>
+              <a class="menu__link-icon" href="https://www.facebook.com/repin404/" target="_blank">
+                <img class="menu__icon" src="2e662bc42e84895f91832269f6722027.png" alt="Facebook">
+              </a>
+            </div>
+          </nav>
         </footer>
       </div>
     </div>
-    <script src="main.5a587771fc9fa6bc132a.js"></script>
+    <script src="main.7994b11ce7a9388e4cbc.js"></script>
   </body>
 </html>

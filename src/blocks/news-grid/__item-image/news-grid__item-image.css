@@ -7,14 +7,16 @@
 
 @media (max-width: 1240px) {
   .news-grid__item-image {
-    width: 224px;
-    height: 150px;
+    width: 288px;
+    height: 196px;
   }
 }
 
 @media (max-width: 1024px) {
   .news-grid__item-image {
     margin-bottom: 16px;
+    width: 224px;
+    height: 150px;
   }
 }
 

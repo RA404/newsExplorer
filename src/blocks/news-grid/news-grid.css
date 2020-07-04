@@ -8,8 +8,8 @@
 .news-grid {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(224px, 400px));
-  grid-template-rows: 576px;
+  grid-template-columns: repeat(3, 400px);
+  grid-template-rows: 596px;
   grid-gap: 16px;
   justify-content: start;
   margin: 64px 0;
@@ -17,22 +17,30 @@
 
 @media (max-width: 1240px) {
   .news-grid {
-    grid-template-columns: repeat(auto-fill, minmax(224px, 224px));
-    grid-template-rows: 430px;
+    grid-template-columns: repeat(3, 288px);
+    grid-template-rows: 496px;
     grid-gap: 8px;
     margin: 32px 0 22px 0;
   }
 }
 
+@media (max-width: 1024px) {
+  .news-grid {
+    grid-template-columns: repeat(3, 224px);
+    grid-template-rows: 446px;
+  }
+}
+
 @media (max-width: 864px) {
   .news-grid {
+    grid-template-columns: repeat(2, 224px);
     justify-content: center;
   }
 }
 
 @media (max-width: 576px) {
   .news-grid {
-    grid-template-columns: repeat(auto-fill, minmax(224px, 288px));
+    grid-template-columns: repeat(1, 288px);
     grid-template-rows: 440px;
     grid-gap: 10px;
     margin: 24px 0 15px 0;

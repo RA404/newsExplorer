@@ -10,6 +10,7 @@ const isDev = process.env.NODE_ENV === 'development';
 module.exports = {
   entry: {
     main: './src/js/main.js',
+    newsPage: './src/js/newsPage.js',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -56,9 +57,15 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: false,
-      template: './src/index.html',
-      filename: 'index.html',
+      template: './src/public/index.html',
+      filename: './index.html',
       chunks: ['main'],
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: './src/public/news/news.html',
+      filename: './news.html',
+      chunks: ['newsPage'],
     }),
     new webpack.DefinePlugin({
       'NODE_ENV': JSON.stringify(process.env.NODE_ENV),

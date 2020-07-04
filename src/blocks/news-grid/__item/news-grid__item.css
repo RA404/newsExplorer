@@ -1,6 +1,8 @@
 @import url('../__flag/news-grid__flag.css');
 @import url('../__flag/_type/news-grid__flag_type_marked.css');
 @import url('../__hint/news-grid__hint.css');
+@import url('../__bin/news-grid__bin.css');
+@import url('../__keywords/news-grid__keywords.css');
 
 .news-grid__item {
   display: flex;

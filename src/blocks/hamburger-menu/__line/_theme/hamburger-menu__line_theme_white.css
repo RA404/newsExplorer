@@ -1,0 +1,8 @@
+.hamburger-menu__line_theme_white {
+  background-color: #000;
+}
+
+.hamburger-menu__line_theme_white::after {
+  content: '';
+  background-color: #000;
+ }

@@ -4,7 +4,7 @@
 @import url('../menu/__items/_type/menu__items_type_footer.css');
 
 .footer {
-  background-color: #E5E5E5;
+  background-color: #fff;
   display: flex;
   flex-direction: row;
   align-items: center;
