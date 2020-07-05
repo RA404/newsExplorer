@@ -1,0 +1,13 @@
+.popup__button_type_disabled {
+  color: #B6BCBF;
+  background-color: #E6E8EB;
+  box-shadow: none;
+}
+
+.popup__button_type_disabled:hover {
+  background-color: #E6E8EB;
+}
+
+.popup__button_type_disabled:active {
+  background-color: #E6E8EB;
+}
