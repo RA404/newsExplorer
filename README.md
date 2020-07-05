@@ -13,12 +13,16 @@ v0.0.1
 * Prodaction mode "npm run start"
 * Deploy to gh-pages "npm run deploy_gh"
 
+#### Production version в папке dist
+#### Development version в папке src
+
 ### Протестировать функциональность элементов верстки
 * Кнопка авторизации
 
 Чтобы получить кнопку неавторизованного пользователя нужно:
-1. у элементов с классом authorization-button__text (у стандартного меню и у "гамбургер меню") убрать класс authorization-button_logout
-2. Элементам с классом authorization-button__container (у стандартного меню и у "гамбургер меню") добавить класс authorization-button_logout
+1. У тэгов "span" с классом "authorization-button__text_status_logged-out" (у стандартного меню и у "гамбургер меню") убрать класс "authorization-button_logout"
+2. Тэгам "span" с классом "authorization-button__text_status_logged-in" (у стандартного меню и у "гамбургер меню") добавить класс "authorization-button_logout"
+3. Тэгам "img" с классом "authorization-button__image" (у стандартного меню и у "гамбургер меню") добавить класс "authorization-button_logout"
 * Скрыть пункт меню "Сохраненные статьи"
 
 Нужно нужному элементу с классом menu__item добавить класс menu__item_status_logged-out

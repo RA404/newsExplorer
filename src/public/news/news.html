@@ -28,16 +28,14 @@
               </li>
             </ul>
             <button class="authorization-button">
-              <div class="authorization-button__container">
-                <p class="authorization-button__text authorization-button__text_status_logged-in">Грета</p>
-                <img class="authorization-button__image" src="<%=require('../../images/logoutBlack.svg')%>" alt="logout icon">
-              </div>
-              <p class="authorization-button__text authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</p>
+              <span class="authorization-button__text authorization-button__text_status_logged-in">Грета</span>
+              <img class="authorization-button__image" src="<%=require('../../images/logoutBlack.svg')%>" alt="logout icon">
+              <span class="authorization-button__text authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
             </button>
           </nav>
           <nav class="hamburger-menu">
             <input class="hamburger-menu__toggle" type="checkbox">
-            <label class="hamburger-menu__button" for="hamburger-menu__toggle">
+            <label class="hamburger-menu__button">
               <span class="hamburger-menu__line hamburger-menu__line_theme_white"></span>
             </label>
             <div class="hamburger-menu__container">
@@ -54,22 +52,20 @@
                 </li>
               </ul>
               <button class="authorization-button authorization-button_theme_dark authorization-button_type_mobile">
-                <div class="authorization-button__container">
-                  <p class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</p>
-                  <img class="authorization-button__image" src="<%=require('../../images/logoutWhite.svg')%>" alt="logout icon">
-                </div>
-                <p class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</p>
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</span>
+                <img class="authorization-button__image" src="<%=require('../../images/logoutWhite.svg')%>" alt="logout icon">
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
               </button>
             </div>
           </nav>
         </header>
         <main class="main">
           <section class="summary-title">
-            <article class="summary-title__container">
+            <div class="summary-title__container">
               <p class="content-paragraph content-paragraph_type_bread-crumbs">Сохраненные статьи</p>
               <h2 class="content-title content-title_type_saved-news">Грета, у вас 5 сохранённых статей</h2>
               <p class="content-paragraph content-paragraph_type_article">По ключевым словам: Природа, Тайга и 2 другим</p>
-            </article>
+            </div>
           </section>
           <section class="saved-news">
             <div class="news-grid news-grid_position_center">
