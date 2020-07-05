@@ -8,3 +8,10 @@
   flex-direction: column;
   border: hidden;
 }
+
+@media (max-width: 719px) {
+  .popup__input-container {
+    margin: 0 0 22px 0;
+    display: block;
+  }
+}

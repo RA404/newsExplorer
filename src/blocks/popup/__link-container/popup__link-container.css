@@ -1,6 +1,5 @@
 @import url('../__text/popup__text.css');
 @import url('../__link/popup__link.css');
-@import url('../__link/_position/popup__link_position_left.css');
 
 .popup__link-container {
   display: flex;

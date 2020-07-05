@@ -168,8 +168,8 @@
         <div class="popup">
           <div class="popup__container">
             <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
-            <h3 class="popup__title">Вход</h3>
             <form class="popup__form" name="loginForm">
+              <h3 class="popup__title">Вход</h3>
               <fieldset class="popup__input-container">
                 <label class="popup__label" for="email">Email</label>
                 <input class="popup__input" type="email" name="email" placeholder="Введите почту">
@@ -190,8 +190,8 @@
         <div class="popup popup_signup">
           <div class="popup__container">
             <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
-            <h3 class="popup__title">Регистрация</h3>
             <form class="popup__form" name="signupForm">
+              <h3 class="popup__title">Регистрация</h3>
               <fieldset class="popup__input-container">
                 <label class="popup__label" for="email">Email</label>
                 <input class="popup__input" type="email" name="email" placeholder="Введите почту">
@@ -214,11 +214,15 @@
             </form>
           </div>
         </div>
-        <div class="popup popup_successful-registered popup_opened">
+        <div class="popup popup_successful-registered">
           <div class="popup__container">
             <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
-            <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
-            <input class="popup__link popup__link_position_left" type="submit" value="Выполнить вход">
+            <form class="popup__form" name="registeredForm">
+              <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+              <div class="popup__link-container popup__link-container_position_left">
+                <input class="popup__link" type="submit" value="Выполнить вход">
+              </div>
+            </form>
           </div>
         </div>
       </div>
