@@ -1,3 +1,6 @@
+@import url('../popup/popup.css');
+@import url('../popup/_opened/popup_opened.css');
+
 .page {
   max-width: 1440px;
   min-width: 320px;

@@ -165,6 +165,62 @@
             </div>
           </nav>
         </footer>
+        <div class="popup">
+          <div class="popup__container">
+            <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
+            <h3 class="popup__title">Вход</h3>
+            <form class="popup__form" name="loginForm">
+              <fieldset class="popup__input-container">
+                <label class="popup__label" for="email">Email</label>
+                <input class="popup__input" type="email" name="email" placeholder="Введите почту">
+                <span class="popup__error">Неправильный формат email</span>
+              </fieldset>
+              <fieldset class="popup__input-container">
+                <label class="popup__label" for="password">Пароль</label>
+                <input class="popup__input" type="password" name="password" placeholder="Введите пароль">
+              </fieldset>
+              <button class="popup__button popup__button_type_active" name="loginButton">Войти</button>
+              <div class="popup__link-container">
+                <p class="popup__text">или </p>
+                <input class="popup__link" type="submit" value="Зарегистрироваться">
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="popup popup_signup">
+          <div class="popup__container">
+            <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
+            <h3 class="popup__title">Регистрация</h3>
+            <form class="popup__form" name="signupForm">
+              <fieldset class="popup__input-container">
+                <label class="popup__label" for="email">Email</label>
+                <input class="popup__input" type="email" name="email" placeholder="Введите почту">
+                <span class="popup__error">Неправильный формат email</span>
+              </fieldset>
+              <fieldset class="popup__input-container">
+                <label class="popup__label" for="password">Пароль</label>
+                <input class="popup__input" type="password" name="password" placeholder="Введите пароль">
+              </fieldset>
+              <fieldset class="popup__input-container">
+                <label class="popup__label" for="name">Имя</label>
+                <input class="popup__input" type="text" name="name" placeholder="Введите свое имя">
+              </fieldset>
+              <span class="popup__error popup_position_center">Такой пользователь уже есть</span>
+              <button class="popup__button popup__button_type_active" name="loginButton">Зарегистрироваться</button>
+              <div class="popup__link-container">
+                <p class="popup__text">или </p>
+                <input class="popup__link" type="submit" value="Войти">
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="popup popup_successful-registered popup_opened">
+          <div class="popup__container">
+            <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
+            <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+            <input class="popup__link popup__link_position_left" type="submit" value="Выполнить вход">
+          </div>
+        </div>
       </div>
     </div>
     <script src="<%=htmlWebpackPlugin.files.js%>"></script>

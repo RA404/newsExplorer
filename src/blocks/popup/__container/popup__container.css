@@ -1,0 +1,10 @@
+@import url('../__error/popup__error.css');
+@import url('../__error/_show/popup__error_show.css');
+
+.popup__container {
+  background-color: #fff;
+  width: 430px;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+}

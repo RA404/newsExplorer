@@ -1,0 +1,10 @@
+@import url('../__label/popup__label.css');
+@import url('../__input/popup__input.css');
+
+.popup__input-container {
+  margin: 0 0 31px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border: hidden;
+}

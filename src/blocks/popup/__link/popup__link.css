@@ -1,0 +1,21 @@
+.popup__link {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: 'Inter','Helvetica Neue', Arial, sans-serif;
+  color: #2F71E5;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.popup__link:hover {
+  cursor: pointer;
+}
+
+.popup__link:focus {
+  outline: none;
+}

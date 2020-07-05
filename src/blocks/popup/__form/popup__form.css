@@ -1,0 +1,11 @@
+@import url('../__input-container/popup__input-container.css');
+@import url('../__button/popup__button.css');
+@import url('../__link-container/popup__link-container.css');
+
+.popup__form {
+  margin: 0 35px;
+  padding: 0;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+}
