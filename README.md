@@ -10,7 +10,8 @@ v0.0.1
 ## How to use
 ###  Сборка
 * Develop mode "npm run dev"
-* Prodaction mode "npm run start"
+* Prodaction mode "npm run start" (и команда start и команда build собирает проект)
+* Prodaction mode "npm run build" (и команда start и команда build собирает проект)
 * Deploy to gh-pages "npm run deploy_gh"
 
 #### Production version в папке dist
