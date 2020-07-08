@@ -14,6 +14,9 @@ v0.0.1
 * Prodaction mode "npm run build" (и команда start и команда build собирает проект)
 * Deploy to gh-pages "npm run deploy_gh"
 
+## GitHub Pages
+[https://ra404.github.io/newsExplorer/](https://ra404.github.io/newsExplorer/)
+
 #### Production version в папке dist
 #### Development version в папке src
 
