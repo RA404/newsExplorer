@@ -1,0 +1,17 @@
+.news-grid__flag {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  top: 24px;
+  right: 24px;
+  background-image: url('../../../images/flag.png');
+}
+
+.news-grid__flag:hover {
+  cursor: pointer;
+  background-image: url('../../../images/flag_hover.png');
+}
+
+.news-grid__flag:hover ~ .news-grid__hint {
+  visibility: visible;
+}

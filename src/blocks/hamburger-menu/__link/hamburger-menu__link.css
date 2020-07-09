@@ -1,0 +1,8 @@
+.hamburger-menu__link {
+  text-decoration: none;
+  font-family: 'Roboto','Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 56px;
+  color: #fff;
+  cursor: pointer;
+}

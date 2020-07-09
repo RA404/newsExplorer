@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Сервис для поиска и хранения новостей">
+  <meta name="author" content="RA404">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>News Explorer</title>
+  <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css%>">
+  <link rel="shortcut icon" href="<%=require('../images/favicon.png')%>" type="image/png">
+</head>
+  <body>
+    <div class="bg">
+      <div class="page">
+        <header class="header header_type_main-page">
+          <div class="overlay"></div>
+          <a class="logo" href="./index.html">
+            <h4 class="logo__text logo__text_theme_dark">NewsExplorer</h4>
+          </a>
+          <nav class="menu">
+            <ul class="menu__items">
+              <li class="menu__item menu__item_active_white">
+                <a class="menu__link menu__link_theme_dark" href="./index.html">Главная</a>
+              </li>
+              <li class="menu__item">
+                <a class="menu__link menu__link_theme_dark" href="./news.html">Сохраненные статьи</a>
+              </li>
+            </ul>
+            <button class="authorization-button authorization-button_theme_dark">
+              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</span>
+              <img class="authorization-button__image" src="<%=require('../images/logoutWhite.svg')%>" alt="logout icon">
+              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
+            </button>
+          </nav>
+          <nav class="hamburger-menu">
+            <input class="hamburger-menu__toggle" type="checkbox">
+            <label class="hamburger-menu__button">
+              <span class="hamburger-menu__line"></span>
+            </label>
+            <div class="hamburger-menu__container">
+              <a class="logo logo_type_open-menu" href="./index.html">
+                <h4 class="logo__text logo__text_theme_dark">NewsExplorer</h4>
+              </a>
+              <hr class="hamburger-menu__separator">
+              <ul class="hamburger-menu__items">
+                <li class="hamburger-menu__item">
+                  <a class="hamburger-menu__link" href="./index.html">Главная</a>
+                </li>
+                <li class="hamburger-menu__item">
+                  <a class="hamburger-menu__link" href="./news.html">Сохраненные статьи</a>
+                </li>
+              </ul>
+              <button class="authorization-button authorization-button_theme_dark authorization-button_type_mobile">
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</span>
+                <img class="authorization-button__image" src="<%=require('../images/logoutWhite.svg')%>" alt="logout icon">
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
+              </button>
+            </div>
+          </nav>
+        </header>
+        <main class="main">
+          <section class="search">
+            <div class="overlay"></div>
+            <div class="search__container">
+              <h1 class="content-title content-title_theme_dark">Что в мире творится?</h1>
+              <p class="content-subtitle content-subtitle_theme_dark">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+              <form class="search__form">
+                <input class="search__search-string" type="text" placeholder="Введите тему новости">
+                <input class="search__search-button" type="submit" value="Искать">
+              </form>
+            </div>
+          </section>
+          <section class="search-result">
+            <div class="search-result__container">
+              <h2 class="content-title content-title_type_section-title">Результаты поиска</h2>
+              <div class="news-grid">
+                <figure class="news-grid__item">
+                  <div class="news-grid__flag"></div>
+                  <div class="news-grid__hint">Войдите, чтобы сохранять статьи</div>
+                  <img class="news-grid__item-image" src="<%=require('../images/news1.png')%>" alt="Национальное достояние – парки">
+                  <figcaption class="news-grid__item-description">
+                    <p class="news-grid__date">2 августа, 2019</p>
+                    <h3 class="content-title content-title_type_news-title">Национальное достояние – парки</h3>
+                    <p class="news-grid__text">В 2016 году Америка отмечала важный юбилей:
+                      сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
+                      где и сегодня каждый может приобщиться к природе.</p>
+                    <p class="news-grid__source">Лента.ру</p>
+                  </figcaption>
+                </figure>
+                <figure class="news-grid__item">
+                  <div class="news-grid__flag news-grid__flag_type_marked"></div>
+                  <div class="news-grid__hint">Войдите, чтобы сохранять статьи</div>
+                  <img class="news-grid__item-image" src="<%=require('../images/news2.png')%>" alt="Национальное достояние – парки">
+                  <figcaption class="news-grid__item-description">
+                    <p class="news-grid__date">2 августа, 2019</p>
+                    <h3 class="content-title content-title_type_news-title">Лесные огоньки: история одной фотографии</h3>
+                    <p class="news-grid__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики,
+                      чтобы запечатлеть ускользающую красоту одного из местных чудес природы.</p>
+                    <p class="news-grid__source">Медуза</p>
+                  </figcaption>
+                </figure>
+                <figure class="news-grid__item">
+                  <div class="news-grid__flag"></div>
+                  <div class="news-grid__hint">Войдите, чтобы сохранять статьи</div>
+                  <img class="news-grid__item-image" src="<%=require('../images/news3.png')%>" alt="Национальное достояние – парки">
+                  <figcaption class="news-grid__item-description">
+                    <p class="news-grid__date">2 августа, 2019</p>
+                    <h3 class="content-title content-title_type_news-title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
+                    <p class="news-grid__text">Знаменитый фотограф снимает первозданные леса России,
+                      чтобы рассказать о необходимости их сохранения.
+                      В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
+                    <p class="news-grid__source">Риа</p>
+                  </figcaption>
+                </figure>
+              </div>
+              <button class="button">
+                <span class="button__text">Показать еще</span>
+              </button>
+            </div>
+            <div class="search-result__container search-result__container_type_preloader search-result__container_hidden">
+              <img class="search-result__preloader" src="<%=require('../images/Ellipse.png')%>" alt="preloader">
+              <p class="content-paragraph content-paragraph_type_preloader">Идет поиск новостей...</p>
+            </div>
+            <div class="search-result__container search-result__container_type_not-found search-result__container_hidden">
+              <img class="search-result__not-found" src="<%=require('../images/not-found.png')%>" alt="not-found">
+              <h3 class="content-title content-title_type_news-title content-title_type_not-found">Ничего не найдено</h3>
+              <p class="content-paragraph content-paragraph_type_not-found">К сожалению по вашему запросу ничего не найдено.</p>
+            </div>
+          </section>
+          <section class="about">
+            <img class="about__author" src="<%=require('../images/author.png')%>" alt="Author photo">
+            <div class="about__article">
+              <h2 class="content-title content-title_type_section-title">Автор</h2>
+              <p class="content-paragraph content-paragraph_type_article">Это блок с описанием автора проекта. Здесь следует указать,
+                как вас зовут, чем вы занимаетесь, какими технологиями разработки владеете.</p>
+              <p class="content-paragraph content-paragraph_type_article">
+                Также можно рассказать о процессе обучения в Практикуме, чему вы тут научились,
+                и чем можете помочь потенциальным заказчикам.</p>
+            </div>
+          </section>
+        </main>
+        <footer class="footer">
+          <p class="content-paragraph content-paragraph_type_footer">© 2020 Supersite, Powered by News API</p>
+          <nav class="menu menu_type_footer">
+            <ul class="menu__items menu__items_type_footer">
+              <li class="menu__item menu__item_type_footer">
+                <a class="menu__link" href="./index.html">Главная</a>
+              </li>
+              <li class="menu__item menu__item_type_footer">
+                <a class="menu__link" href="https://praktikum.yandex.ru/" target="_blank">Яндекс.Практикум</a>
+              </li>
+            </ul>
+            <div class="menu__icons">
+              <a class="menu__link-icon" href="https://github.com/RA404/newsExplorer" target="_blank">
+                <img class="menu__icon" src="<%=require('../images/github.png')%>" alt="GitHub">
+              </a>
+              <a class="menu__link-icon" href="https://www.facebook.com/repin404/" target="_blank">
+                <img class="menu__icon" src="<%=require('../images/fb.png')%>" alt="Facebook">
+              </a>
+            </div>
+          </nav>
+        </footer>
+        <div class="popup">
+          <div class="popup__container">
+            <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
+            <form class="popup__form" name="loginForm">
+              <h3 class="popup__title">Вход</h3>
+              <fieldset class="popup__input-container">
+                <span class="popup__label">Email</span>
+                <input class="popup__input" type="email" name="email" placeholder="Введите почту">
+                <span class="popup__error">Неправильный формат email</span>
+              </fieldset>
+              <fieldset class="popup__input-container">
+                <span class="popup__label">Пароль</span>
+                <input class="popup__input" type="password" name="password" placeholder="Введите пароль">
+              </fieldset>
+              <button class="popup__button popup__button_type_disabled" name="loginButton" disabled>Войти</button>
+              <div class="popup__link-container">
+                <p class="popup__text">или </p>
+                <input class="popup__link" type="submit" value="Зарегистрироваться">
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="popup popup_signup">
+          <div class="popup__container">
+            <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
+            <form class="popup__form" name="signupForm">
+              <h3 class="popup__title">Регистрация</h3>
+              <fieldset class="popup__input-container">
+                <span class="popup__label">Email</span>
+                <input class="popup__input" type="email" name="email" placeholder="Введите почту">
+                <span class="popup__error">Неправильный формат email</span>
+              </fieldset>
+              <fieldset class="popup__input-container">
+                <span class="popup__label">Пароль</span>
+                <input class="popup__input" type="password" name="password" placeholder="Введите пароль">
+              </fieldset>
+              <fieldset class="popup__input-container">
+                <span class="popup__label">Имя</span>
+                <input class="popup__input" type="text" name="name" placeholder="Введите свое имя">
+              </fieldset>
+              <span class="popup__error popup_position_center">Такой пользователь уже есть</span>
+              <button class="popup__button" name="loginButton">Зарегистрироваться</button>
+              <div class="popup__link-container">
+                <p class="popup__text">или </p>
+                <input class="popup__link" type="submit" value="Войти">
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="popup popup_successful-registered">
+          <div class="popup__container">
+            <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
+            <form class="popup__form" name="registeredForm">
+              <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
+              <div class="popup__link-container popup__link-container_position_left">
+                <input class="popup__link" type="submit" value="Выполнить вход">
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="<%=htmlWebpackPlugin.files.js%>"></script>
+  </body>
+</html>

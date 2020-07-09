@@ -1,0 +1,27 @@
+@import url('./__toggle/hamburger-menu__toggle.css');
+@import url('./__button/hamburger-menu__button.css');
+@import url('./__line/hamburger-menu__line.css');
+@import url('./__line/_theme/hamburger-menu__line_theme_white.css');
+@import url('../hamburger-menu/__items/hamburger-menu__items.css');
+@import url('../hamburger-menu/__separator/hamburger-menu__separator.css');
+@import url('../authorization-button/_type/authorization-button_type_mobile.css');
+@import url('./__container/hamburger-menu__container.css');
+@import url('../logo/_type/logo_type_open-menu.css');
+
+.hamburger-menu {
+  display: none;
+}
+
+@media (max-width: 719px) {
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    z-index: 1;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+  }
+}

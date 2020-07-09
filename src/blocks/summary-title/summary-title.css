@@ -1,0 +1,10 @@
+@import url('../content-paragraph/_type/content-paragraph_type_bread-crumbs.css');
+@import url('./__container/summary-title__container.css');
+
+.summary-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: 0;
+  padding: 0;
+}

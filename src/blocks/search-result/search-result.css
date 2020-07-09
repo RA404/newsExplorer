@@ -1,0 +1,14 @@
+@import url('./__container/search-result__container.css');
+@import url('./__container/_type/search-result__container_type_preloader.css');
+@import url('./__container/_type/search-result__container_type_not-found.css');
+@import url('../news-grid/news-grid.css');
+@import url('../content-paragraph/content-paragraph.css');
+@import url('../content-paragraph/_type/content-paragraph_type_preloader.css');
+@import url('../content-paragraph/_type/content-paragraph_type_not-found.css');
+@import url('./__container/_hidden/search-result__container_hidden.css');
+
+.search-result {
+  display: flex;
+  background-color: #F5F6F7;
+  flex-direction: column;
+}

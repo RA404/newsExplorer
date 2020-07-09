@@ -1,0 +1,8 @@
+.menu__item_active_white::before {
+  content: '';
+}
+
+.menu__item_active_white::after {
+  content: '';
+  border-bottom: 3px solid #fff;
+}

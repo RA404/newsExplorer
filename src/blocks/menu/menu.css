@@ -1,0 +1,30 @@
+@import url('./__items/menu__items.css');
+@import url('./__item/menu__item.css');
+@import url('./__link/menu__link.css');
+@import url('./__link/_theme/menu__link_theme_dark.css');
+@import url('./__item/_active/menu__item_active_white.css');
+@import url('./__item/_active/menu__item_active_black.css');
+@import url('./__item/_status/menu__item_status_logged-out.css');
+@import url('./__icons/menu__icons.css');
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  z-index: 1;
+  margin-right: 104px;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .menu {
+    margin-right: 40px;
+  }
+}
+
+@media (max-width: 719px) {
+  .menu {
+    display: none;
+  }
+}

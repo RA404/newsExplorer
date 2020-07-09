@@ -1,0 +1,10 @@
+.menu__item_type_footer {
+  margin-right: 25px;
+  font-family: 'Roboto','Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 48px;
+}
+
+.menu__item_type_footer:last-child {
+  margin-right: 25px;
+}

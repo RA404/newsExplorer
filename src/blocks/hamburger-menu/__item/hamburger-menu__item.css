@@ -1,0 +1,12 @@
+@import url('../__link/hamburger-menu__link.css');
+
+.hamburger-menu__item {
+  position: relative;
+  margin-left: 16px;
+}
+
+@media (min-width: 481px) {
+  .hamburger-menu__item {
+    margin-left: 40px;
+  }
+}

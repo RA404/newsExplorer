@@ -1,0 +1,16 @@
+.news-grid__item-description {
+  height: 304px;
+  position: relative;
+}
+
+@media (max-width: 1240px) {
+  .news-grid__item-description {
+    height: 280px;
+  }
+}
+
+@media (max-width: 576px) {
+  .news-grid__item-description {
+    height: 244px;
+  }
+}

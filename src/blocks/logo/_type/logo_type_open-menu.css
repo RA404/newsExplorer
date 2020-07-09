@@ -1,0 +1,11 @@
+.logo_type_open-menu {
+  position: fixed;
+  left: 0;
+  top: 16px;
+}
+
+@media (min-width: 481px) {
+  .logo_type_open-menu {
+    top: 21px;
+  }
+}

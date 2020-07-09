@@ -1,0 +1,20 @@
+@import url('../__input-container/popup__input-container.css');
+@import url('../__button/popup__button.css');
+@import url('../__link-container/popup__link-container.css');
+@import url('../__link-container/_position/popup__link-container_position_left.css');
+@import url('../__button/_type/popup__button_type_disabled.css');
+
+.popup__form {
+  margin: 0 35px;
+  padding: 0;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 719px) {
+  .popup__form {
+    margin: 0 auto;
+    max-width: 288px;
+  }
+}

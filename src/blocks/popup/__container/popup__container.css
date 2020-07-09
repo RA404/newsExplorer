@@ -1,0 +1,28 @@
+@import url('../__error/popup__error.css');
+@import url('../__error/_show/popup__error_show.css');
+
+.popup__container {
+  background-color: #fff;
+  width: 430px;
+  position: relative;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+@media (max-width: 719px) {
+  .popup__container {
+    width: 100%;
+    position: absolute;
+    top: 66px;
+    bottom: 0;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .popup__container {
+    top: 56px;
+  }
+}

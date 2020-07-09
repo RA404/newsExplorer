@@ -1,0 +1,11 @@
+@import url('../search/search.css');
+@import url('../search-result/search-result.css');
+@import url('../saved_news/saved-news.css');
+@import url('../about/about.css');
+
+.main {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+  min-width: 320px;
+}

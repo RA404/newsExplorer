@@ -1,0 +1,28 @@
+.content-title_type_section-title {
+  font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+  font-size: 40px;
+  line-height: 46px;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .content-title_type_section-title {
+    font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+    font-size: 30px;
+    line-height: 34px;
+  }
+}
+
+@media (max-width: 864px) {
+  .content-title_type_section-title {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .content-title_type_section-title {
+    font-family: 'Roboto Slab','Helvetica Neue', Arial, sans-serif;
+    font-size: 36px;
+    line-height: 40px;
+  }
+}

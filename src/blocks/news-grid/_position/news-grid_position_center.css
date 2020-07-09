@@ -1,0 +1,28 @@
+.news-grid_position_center {
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 1240px) {
+  .news-grid_position_center {
+    grid-template-columns: repeat(3, 288px);
+  }
+}
+
+@media (max-width: 1024px) {
+  .news-grid_position_center {
+    grid-template-columns: repeat(3, 224px);
+  }
+}
+
+@media (max-width: 864px) {
+  .news-grid_position_center {
+    grid-template-columns: repeat(2, 224px);
+  }
+}
+
+@media (max-width: 576px) {
+  .news-grid_position_center {
+    grid-template-columns: repeat(1, 288px);
+  }
+}

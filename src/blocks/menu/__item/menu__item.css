@@ -1,0 +1,23 @@
+.menu__item {
+  text-decoration: none;
+  font-family: 'Roboto','Helvetica Neue', Arial, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  margin-right: 34px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu__item:last-child {
+  margin-right: 51px;
+}
+
+.menu__item::before {
+  content: '';
+}
+
+.menu__item::after {
+  content: '';
+}

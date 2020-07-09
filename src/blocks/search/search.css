@@ -1,0 +1,31 @@
+@import url('./__container/search__container.css');
+
+.search {
+  position: relative;
+  display: flex;
+  margin: auto;
+  background-image: url('../../images/searchBackground.jpg');
+  background-position: center -134px;
+  background-size: 100% auto;
+}
+
+@media (max-width: 1024px) {
+  .search {
+    background-position: center -66px;
+    background-size: 100% auto;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 719px) {
+  .search {
+    background-position: center -66px;
+    background-size: 155% auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .search {
+    background-position: center -56px;
+    background-size: 310% auto;
+  }
+}

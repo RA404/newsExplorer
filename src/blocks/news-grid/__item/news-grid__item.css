@@ -1,0 +1,14 @@
+@import url('../__flag/news-grid__flag.css');
+@import url('../__flag/_type/news-grid__flag_type_marked.css');
+@import url('../__hint/news-grid__hint.css');
+@import url('../__bin/news-grid__bin.css');
+@import url('../__keywords/news-grid__keywords.css');
+
+.news-grid__item {
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 10px 0;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+}

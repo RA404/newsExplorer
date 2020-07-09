@@ -1,0 +1,29 @@
+.news-grid__item-image {
+  width: 400px;
+  height: 272px;
+  border-radius: 10px 10px 0 0;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1240px) {
+  .news-grid__item-image {
+    width: 288px;
+    height: 196px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .news-grid__item-image {
+    margin-bottom: 16px;
+    width: 224px;
+    height: 150px;
+  }
+}
+
+
+@media (max-width: 576px) {
+  .news-grid__item-image {
+    width: 288px;
+    height: 196px;
+  }
+}

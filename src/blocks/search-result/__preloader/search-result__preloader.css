@@ -1,0 +1,15 @@
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.search-result__preloader {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 24px auto;
+  animation: rotation 1s linear infinite;
+}

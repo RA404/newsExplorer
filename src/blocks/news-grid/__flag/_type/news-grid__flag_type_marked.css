@@ -1,0 +1,13 @@
+.news-grid__flag_type_marked {
+  cursor: pointer;
+  background-image: url('../../../../images/flag_marked.png');
+}
+
+.news-grid__flag_type_marked:hover {
+  cursor: pointer;
+  background-image: url('../../../../images/flag_marked.png');
+}
+
+.news-grid__flag_type_marked:hover ~ .news-grid__hint {
+  visibility: hidden;
+}

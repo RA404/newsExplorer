@@ -1,0 +1,7 @@
+@import url('../__link-icon/menu__link-icon.css');
+
+.menu__icons {
+  display: flex;
+  flex-direction: row;
+  justify-self: start;
+}

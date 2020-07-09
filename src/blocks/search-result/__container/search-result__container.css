@@ -1,0 +1,36 @@
+@import url('../../content-title/content-title.css');
+@import url('../../content-title/_type/content-title_type_section-title.css');
+@import url('../../content-title/_type/content-title_type_news-title.css');
+@import url('../../news-grid/news-grid.css');
+@import url('../../button/button.css');
+
+.search-result__container {
+  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1240px) {
+  .search-result__container {
+    margin: 40px 0 40px 80px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .search-result__container {
+    margin: 40px 0 40px 102px;
+  }
+}
+
+@media (max-width: 864px) {
+  .search-result__container {
+    margin: 40px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .search-result__container {
+    margin: 32px auto;
+    width: 288px;
+  }
+}

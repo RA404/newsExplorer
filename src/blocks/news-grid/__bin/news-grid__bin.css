@@ -1,0 +1,17 @@
+.news-grid__bin {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  top: 24px;
+  right: 24px;
+  background-image: url('../../../images/bin.png');
+}
+
+.news-grid__bin:hover {
+  cursor: pointer;
+  background-image: url('../../../images/bin_hover.png');
+}
+
+.news-grid__bin:hover ~ .news-grid__hint {
+  visibility: visible;
+}
