@@ -23,14 +23,14 @@
               <li class="menu__item menu__item_active_white">
                 <a class="menu__link menu__link_theme_dark" href="./index.html">Главная</a>
               </li>
-              <li class="menu__item">
+              <li class="menu__item menu__item_status_logged-out">
                 <a class="menu__link menu__link_theme_dark" href="./news.html">Сохраненные статьи</a>
               </li>
             </ul>
             <button class="authorization-button authorization-button_theme_dark">
-              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</span>
-              <img class="authorization-button__image" src="<%=require('../images/logoutWhite.svg')%>" alt="logout icon">
-              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
+              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in authorization-button_logout">Грета</span>
+              <img class="authorization-button__image authorization-button_logout" src="<%=require('../images/logoutWhite.svg')%>" alt="logout icon">
+              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out">Авторизоваться</span>
             </button>
           </nav>
           <nav class="hamburger-menu">
@@ -47,14 +47,14 @@
                 <li class="hamburger-menu__item">
                   <a class="hamburger-menu__link" href="./index.html">Главная</a>
                 </li>
-                <li class="hamburger-menu__item">
+                <li class="hamburger-menu__item hamburger-menu__item_status_logged-out">
                   <a class="hamburger-menu__link" href="./news.html">Сохраненные статьи</a>
                 </li>
               </ul>
               <button class="authorization-button authorization-button_theme_dark authorization-button_type_mobile">
-                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</span>
-                <img class="authorization-button__image" src="<%=require('../images/logoutWhite.svg')%>" alt="logout icon">
-                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in  authorization-button_logout">Грета</span>
+                <img class="authorization-button__image authorization-button_logout" src="<%=require('../images/logoutWhite.svg')%>" alt="logout icon">
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out">Авторизоваться</span>
               </button>
             </div>
           </nav>
