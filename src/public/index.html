@@ -67,14 +67,15 @@
               <p class="content-subtitle content-subtitle_theme_dark">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
               <form class="search__form">
                 <input class="search__search-string" type="text" placeholder="Введите тему новости">
-                <input class="search__search-button" type="submit" value="Искать">
+                <input class="search__search-button"  type="submit" value="Искать">
               </form>
             </div>
           </section>
           <section class="search-result">
-            <div class="search-result__container">
+            <div class="search-result__container search-result__container_hidden">
               <h2 class="content-title content-title_type_section-title">Результаты поиска</h2>
               <div class="news-grid">
+                <!--
                 <figure class="news-grid__item">
                   <div class="news-grid__flag"></div>
                   <div class="news-grid__hint">Войдите, чтобы сохранять статьи</div>
@@ -113,6 +114,7 @@
                     <p class="news-grid__source">Риа</p>
                   </figcaption>
                 </figure>
+                -->
               </div>
               <button class="button">
                 <span class="button__text">Показать еще</span>
@@ -161,9 +163,10 @@
             </div>
           </nav>
         </footer>
+
         <div class="popup">
+          <div class="overlay popup__overlay"></div>
           <div class="popup__container">
-            <div class="overlay"></div>
             <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
             <form class="popup__form" name="loginForm">
               <h3 class="popup__title">Вход</h3>
@@ -184,8 +187,9 @@
             </form>
           </div>
         </div>
+
         <div class="popup popup_signup">
-          <div class="overlay"></div>
+          <div class="overlay popup__overlay"></div>
           <div class="popup__container">
             <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
             <form class="popup__form" name="signupForm">
@@ -204,7 +208,7 @@
                 <input class="popup__input" type="text" name="name" placeholder="Введите свое имя">
               </fieldset>
               <span class="popup__error popup_position_center">Такой пользователь уже есть</span>
-              <button class="popup__button" name="loginButton">Зарегистрироваться</button>
+              <button class="popup__button popup__button_type_disabled" name="loginButton" disabled>Зарегистрироваться</button>
               <div class="popup__link-container">
                 <p class="popup__text">или </p>
                 <input class="popup__link" type="submit" value="Войти">
@@ -212,8 +216,9 @@
             </form>
           </div>
         </div>
+
         <div class="popup popup_successful-registered">
-          <div class="overlay"></div>
+          <div class="overlay popup__overlay"></div>
           <div class="popup__container">
             <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
             <form class="popup__form" name="registeredForm">
@@ -224,6 +229,17 @@
             </form>
           </div>
         </div>
+
+        <div class="popup popup_error">
+          <div class="overlay popup__overlay"></div>
+          <div class="popup__container">
+            <img class="popup__close" src="<%=require('../images/close.png')%>" alt="close button">
+            <form class="popup__form" name="errorForm">
+              <h3 class="popup__title">Произошла ошибка!</h3>
+            </form>
+          </div>
+        </div>
+
       </div>
     </div>
     <script src="<%=htmlWebpackPlugin.files.js%>"></script>
