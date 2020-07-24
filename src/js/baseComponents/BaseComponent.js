@@ -1,7 +1,8 @@
 export default class BaseComponent {
 
-  constructor(domElement, dependencies = {} ) {
+  constructor(domElement, popupForm, dependencies = {} ) {
     this.domElement = domElement;
+    this.popupForm = popupForm;
     this.dependencies = dependencies;
 
     this.addEventListener = this.addEventListener.bind(this);

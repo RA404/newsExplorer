@@ -7,7 +7,7 @@ import NewsCard from './components/NewsCard';
 import NewsCardList from './components/NewsCardList';
 import Overlay from './components/Overlay';
 import Popup from './components/Popup';
-import Form from './components/Form';
+import FormValidator from './components/FormValidator';
 
 // пропишем константы
 const apiKey = "72247f4ab53b48cf97e40059a80e1d5d";
@@ -20,6 +20,8 @@ const searchButton = document.querySelector('.search__search-button');
 const searchString = document.querySelector('.search__search-string');
 const mobileMenuToggler = document.querySelector('.hamburger-menu__toggle');
 const showMoreButton = document.querySelector('.button');
+const openSignupPopupLink = document.forms.loginForm.elements.openSignupPopupLink;
+const openLoginPopupLink = document.forms.signupForm.elements.openLoginPopupLink;
 
 // найдем блоки и элементы на странице
 const articlesDOM = document.querySelector('.search-result__container');
@@ -29,21 +31,32 @@ const newsContainerDom = document.querySelector('.news-grid');
 
 // создаем экземпляры классов
 const newsCard = new NewsCard();
-const registerForm = new Form();
 const newsCardList = new NewsCardList(newsContainerDom, newsCard);
 const popupSignin = new Popup(
   document.querySelector('.popup'),
+  document.forms.loginForm,
   {
     Overlay: Overlay,
-  }
+    FormValidator: FormValidator,
+  },
+);
+const popupSignup = new Popup(
+  document.querySelector('.popup_signup'),
+  document.forms.signupForm,
+  {
+    Overlay: Overlay,
+    FormValidator: FormValidator,
+  },
 );
 const popupError = new Popup(
   document.querySelector('.popup_error'),
+  document.forms.errorForm,
   {
     Overlay: Overlay,
   }
 );
 const newsApi = new NewsApi(articlesDOM, articlesNotFoundDOM, articlesPreloaderDOM, apiKey, apiURL);
+
 
 // вешаем обработчики событий
 
@@ -55,6 +68,18 @@ authorizationButtonsList.forEach(function (item) {
     mobileMenuToggler.checked = false;
   })
 });
+
+// кнопки в формах, для переключения попапов
+openLoginPopupLink.addEventListener('click', () => {
+  event.preventDefault();
+  popupSignin.open();
+});
+openSignupPopupLink.addEventListener('click', () => {
+  event.preventDefault();
+  popupSignup.open();
+});
+
+
 
 // клик по кнопке найти
 searchButton.addEventListener('click', () => {

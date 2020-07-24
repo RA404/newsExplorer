@@ -178,11 +178,12 @@
               <fieldset class="popup__input-container">
                 <span class="popup__label">Пароль</span>
                 <input class="popup__input" type="password" name="password" placeholder="Введите пароль">
+                <span class="popup__error">Пароль должен быть не менее 8 символов</span>
               </fieldset>
               <button class="popup__button popup__button_type_disabled" name="loginButton" disabled>Войти</button>
               <div class="popup__link-container">
                 <p class="popup__text">или </p>
-                <input class="popup__link" type="submit" value="Зарегистрироваться">
+                <input class="popup__link" type="submit" value="Зарегистрироваться" name="openSignupPopupLink">
               </div>
             </form>
           </div>
@@ -202,16 +203,18 @@
               <fieldset class="popup__input-container">
                 <span class="popup__label">Пароль</span>
                 <input class="popup__input" type="password" name="password" placeholder="Введите пароль">
+                <span class="popup__error">Пароль должен быть не менее 8 символов</span>
               </fieldset>
               <fieldset class="popup__input-container">
                 <span class="popup__label">Имя</span>
                 <input class="popup__input" type="text" name="name" placeholder="Введите свое имя">
+                <span class="popup__error">Имя должно быть от 2 до 30 символов</span>
               </fieldset>
               <span class="popup__error popup_position_center">Такой пользователь уже есть</span>
-              <button class="popup__button popup__button_type_disabled" name="loginButton" disabled>Зарегистрироваться</button>
+              <button class="popup__button popup__button_type_disabled" name="signupButton" disabled>Зарегистрироваться</button>
               <div class="popup__link-container">
                 <p class="popup__text">или </p>
-                <input class="popup__link" type="submit" value="Войти">
+                <input class="popup__link" type="submit" value="Войти" name="openLoginPopupLink">
               </div>
             </form>
           </div>
@@ -224,7 +227,7 @@
             <form class="popup__form" name="registeredForm">
               <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
               <div class="popup__link-container popup__link-container_position_left">
-                <input class="popup__link" type="submit" value="Выполнить вход">
+                <input class="popup__link" type="submit" value="Выполнить вход" name="loginLink">
               </div>
             </form>
           </div>
