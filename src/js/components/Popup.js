@@ -100,7 +100,7 @@ export default class Popup extends BaseComponent {
   _login() {
     event.preventDefault();
 
-    const apiLink = "http://api2.ra404.ru/signin";
+    const apiLink = "https://apinews.ra404.ru/signin";
 
     //получим карточки с сервера
     let promiseToken = this._getToken(apiLink, this.emailField.value, this.passField.value);
@@ -114,7 +114,7 @@ export default class Popup extends BaseComponent {
         //-----
         return new Promise(function(resolve, reject) {
 
-          fetch('http://api2.ra404.ru/users/me',
+          fetch('https://apinews.ra404.ru/users/me',
           {
             credentials: 'include',
           })

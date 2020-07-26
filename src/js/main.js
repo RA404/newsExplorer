@@ -95,7 +95,7 @@ loginLink.addEventListener('click', () => {
 signupButton.addEventListener('click', () => {
 
     event.preventDefault();
-    const apiLink = "http://api2.ra404.ru/signup";
+    const apiLink = "https://apinews.ra404.ru/signup";
 
     //получим пользователя с сервера
     const emailField = document.forms.signupForm.elements.email.value;
