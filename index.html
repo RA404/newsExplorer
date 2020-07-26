@@ -7,7 +7,7 @@
   <meta name="author" content="RA404">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>News Explorer</title>
-  <link rel="stylesheet" href="style.e45d8aab7d3ff1f9784d.css">
+  <link rel="stylesheet" href="style.5e9056d4eb15d53ce6e0.css">
   <link rel="shortcut icon" href="ec404a541d2d888c81c81c18cf75f308.png" type="image/png">
 </head>
   <body>
@@ -23,14 +23,14 @@
               <li class="menu__item menu__item_active_white">
                 <a class="menu__link menu__link_theme_dark" href="./index.html">Главная</a>
               </li>
-              <li class="menu__item">
+              <li class="menu__item menu__item_status_logged-out">
                 <a class="menu__link menu__link_theme_dark" href="./news.html">Сохраненные статьи</a>
               </li>
             </ul>
             <button class="authorization-button authorization-button_theme_dark">
-              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</span>
-              <img class="authorization-button__image" src="f67f251af479ba5f3f5a099a913f6b4d.svg" alt="logout icon">
-              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
+              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in authorization-button_logout">Грета</span>
+              <img class="authorization-button__image authorization-button_logout" src="f67f251af479ba5f3f5a099a913f6b4d.svg" alt="logout icon">
+              <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out">Авторизоваться</span>
             </button>
           </nav>
           <nav class="hamburger-menu">
@@ -47,14 +47,14 @@
                 <li class="hamburger-menu__item">
                   <a class="hamburger-menu__link" href="./index.html">Главная</a>
                 </li>
-                <li class="hamburger-menu__item">
+                <li class="hamburger-menu__item hamburger-menu__item_status_logged-out">
                   <a class="hamburger-menu__link" href="./news.html">Сохраненные статьи</a>
                 </li>
               </ul>
               <button class="authorization-button authorization-button_theme_dark authorization-button_type_mobile">
-                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</span>
-                <img class="authorization-button__image" src="f67f251af479ba5f3f5a099a913f6b4d.svg" alt="logout icon">
-                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in  authorization-button_logout">Грета</span>
+                <img class="authorization-button__image authorization-button_logout" src="f67f251af479ba5f3f5a099a913f6b4d.svg" alt="logout icon">
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out">Авторизоваться</span>
               </button>
             </div>
           </nav>
@@ -67,14 +67,15 @@
               <p class="content-subtitle content-subtitle_theme_dark">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
               <form class="search__form">
                 <input class="search__search-string" type="text" placeholder="Введите тему новости">
-                <input class="search__search-button" type="submit" value="Искать">
+                <input class="search__search-button"  type="submit" value="Искать">
               </form>
             </div>
           </section>
           <section class="search-result">
-            <div class="search-result__container">
+            <div class="search-result__container search-result__container_hidden">
               <h2 class="content-title content-title_type_section-title">Результаты поиска</h2>
               <div class="news-grid">
+                <!--
                 <figure class="news-grid__item">
                   <div class="news-grid__flag"></div>
                   <div class="news-grid__hint">Войдите, чтобы сохранять статьи</div>
@@ -113,6 +114,7 @@
                     <p class="news-grid__source">Риа</p>
                   </figcaption>
                 </figure>
+                -->
               </div>
               <button class="button">
                 <span class="button__text">Показать еще</span>
@@ -161,7 +163,9 @@
             </div>
           </nav>
         </footer>
+
         <div class="popup">
+          <div class="overlay popup__overlay"></div>
           <div class="popup__container">
             <img class="popup__close" src="73a6b79fb941250b2272009b93a4ea63.png" alt="close button">
             <form class="popup__form" name="loginForm">
@@ -174,16 +178,19 @@
               <fieldset class="popup__input-container">
                 <span class="popup__label">Пароль</span>
                 <input class="popup__input" type="password" name="password" placeholder="Введите пароль">
+                <span class="popup__error">Пароль должен быть не менее 8 символов</span>
               </fieldset>
               <button class="popup__button popup__button_type_disabled" name="loginButton" disabled>Войти</button>
               <div class="popup__link-container">
                 <p class="popup__text">или </p>
-                <input class="popup__link" type="submit" value="Зарегистрироваться">
+                <input class="popup__link" type="submit" value="Зарегистрироваться" name="openSignupPopupLink">
               </div>
             </form>
           </div>
         </div>
+
         <div class="popup popup_signup">
+          <div class="overlay popup__overlay"></div>
           <div class="popup__container">
             <img class="popup__close" src="73a6b79fb941250b2272009b93a4ea63.png" alt="close button">
             <form class="popup__form" name="signupForm">
@@ -196,33 +203,48 @@
               <fieldset class="popup__input-container">
                 <span class="popup__label">Пароль</span>
                 <input class="popup__input" type="password" name="password" placeholder="Введите пароль">
+                <span class="popup__error">Пароль должен быть не менее 8 символов</span>
               </fieldset>
               <fieldset class="popup__input-container">
                 <span class="popup__label">Имя</span>
                 <input class="popup__input" type="text" name="name" placeholder="Введите свое имя">
+                <span class="popup__error">Имя должно быть от 2 до 30 символов</span>
               </fieldset>
               <span class="popup__error popup_position_center">Такой пользователь уже есть</span>
-              <button class="popup__button" name="loginButton">Зарегистрироваться</button>
+              <button class="popup__button popup__button_type_disabled" name="signupButton" disabled>Зарегистрироваться</button>
               <div class="popup__link-container">
                 <p class="popup__text">или </p>
-                <input class="popup__link" type="submit" value="Войти">
+                <input class="popup__link" type="submit" value="Войти" name="openLoginPopupLink">
               </div>
             </form>
           </div>
         </div>
+
         <div class="popup popup_successful-registered">
+          <div class="overlay popup__overlay"></div>
           <div class="popup__container">
             <img class="popup__close" src="73a6b79fb941250b2272009b93a4ea63.png" alt="close button">
             <form class="popup__form" name="registeredForm">
               <h3 class="popup__title">Пользователь успешно зарегистрирован!</h3>
               <div class="popup__link-container popup__link-container_position_left">
-                <input class="popup__link" type="submit" value="Выполнить вход">
+                <input class="popup__link" type="submit" value="Выполнить вход" name="loginLink">
               </div>
             </form>
           </div>
         </div>
+
+        <div class="popup popup_error">
+          <div class="overlay popup__overlay"></div>
+          <div class="popup__container">
+            <img class="popup__close" src="73a6b79fb941250b2272009b93a4ea63.png" alt="close button">
+            <form class="popup__form" name="errorForm">
+              <h3 class="popup__title">Произошла ошибка!</h3>
+            </form>
+          </div>
+        </div>
+
       </div>
     </div>
-    <script src="main.7994b11ce7a9388e4cbc.js"></script>
+    <script src="main.1290393f4c805ea97581.js"></script>
   </body>
 </html>
