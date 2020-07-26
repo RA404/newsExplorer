@@ -95,6 +95,7 @@ loginLink.addEventListener('click', () => {
 signupButton.addEventListener('click', () => {
 
     event.preventDefault();
+    // путь https
     const apiLink = "https://apinews.ra404.ru/signup";
 
     //получим пользователя с сервера

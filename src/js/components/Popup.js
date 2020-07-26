@@ -113,7 +113,7 @@ export default class Popup extends BaseComponent {
         //теперь нужно обратиться на users/me и показать наш токен, нам вернется имя пользователя
         //-----
         return new Promise(function(resolve, reject) {
-
+          //путь https
           fetch('https://apinews.ra404.ru/users/me',
           {
             credentials: 'include',
