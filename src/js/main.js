@@ -22,6 +22,8 @@ const mobileMenuToggler = document.querySelector('.hamburger-menu__toggle');
 const showMoreButton = document.querySelector('.button');
 const openSignupPopupLink = document.forms.loginForm.elements.openSignupPopupLink;
 const openLoginPopupLink = document.forms.signupForm.elements.openLoginPopupLink;
+const signupButton = document.forms.signupForm.elements.signupButton;
+const loginLink = document.forms.registeredForm.elements.loginLink;
 
 // найдем блоки и элементы на странице
 const articlesDOM = document.querySelector('.search-result__container');
@@ -46,6 +48,13 @@ const popupSignup = new Popup(
   {
     Overlay: Overlay,
     FormValidator: FormValidator,
+  },
+);
+const popupRegistered = new Popup(
+  document.querySelector('.popup_successful-registered'),
+  document.forms.registeredForm,
+  {
+    Overlay: Overlay,
   },
 );
 const popupError = new Popup(
@@ -78,8 +87,37 @@ openSignupPopupLink.addEventListener('click', () => {
   event.preventDefault();
   popupSignup.open();
 });
+loginLink.addEventListener('click', () => {
+  event.preventDefault();
+  popupSignin.open();
+  popupRegistered.close();
+});
+signupButton.addEventListener('click', () => {
 
+    event.preventDefault();
+    const apiLink = "http://api2.ra404.ru/signup";
 
+    //получим пользователя с сервера
+    const emailField = document.forms.signupForm.elements.email.value;
+    const passField = document.forms.signupForm.elements.password.value;
+    const nameField = document.forms.signupForm.elements.name.value;
+
+    let newUser = getNewUser(apiLink, emailField, passField, nameField);
+    newUser
+      .then((result) => {
+        // console.log(result);
+        popupSignup.close();
+        popupRegistered.open();
+      })
+      .catch((err) => {
+        // console.log(err);
+        popupSignup.close();
+        popupRegistered.close();
+        popupError.setHeading(err);
+        popupError.open();
+      });
+
+})
 
 // клик по кнопке найти
 searchButton.addEventListener('click', () => {
@@ -111,3 +149,35 @@ searchButton.addEventListener('click', () => {
 showMoreButton.addEventListener('click', () => {
   newsCardList.showMore(arrNews);
 });
+
+function getNewUser(apiLink, emailValue, passValue, nameValue) {
+  return new Promise(function (resolve, reject) {
+
+    fetch(apiLink,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          email: emailValue,
+          password: passValue,
+          name: nameValue
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        //если ошибка, переходим в catch
+        reject(`Ошибка: ${res.status} ${res.statusText}`);
+      })
+      .then((result) => {
+        resolve(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
