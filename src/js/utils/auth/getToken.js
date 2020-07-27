@@ -18,7 +18,13 @@ export default function getToken(apiLinkSignin, emailField, passField) {
           return res.json();
         }
         //если ошибка, переходим в catch
-        reject(`Ошибка: ${res.status} ${res.statusText}`);
+        if (res.status == 404) {
+          reject(`Такой пользователь не найден, попробуйте еще раз или зарегистрируйтесь.`);
+        } else if (res.status == 401) {
+          reject(`Неправильное имя пользователя или пароль`);
+        } else {
+          reject(`Ошибка: ${res.status} ${res.statusText}`);
+        }
       })
       .then((result) => {
         resolve(result);

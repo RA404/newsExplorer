@@ -113,7 +113,6 @@ authorizationButtonsList.forEach(function (item) {
           Locate.reload();
         })
         .catch((err) => {
-          console.log(err);
           currentUser = {};
           // перерисуем хэдэр
           header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
@@ -195,7 +194,9 @@ signinButton.addEventListener('click', () => {
         })
     })
     .catch((err) => {
-      console.log(err);
+      popupSignin.close();
+      popupError.setHeading(err);
+      popupError.open();
     });
 
 });
