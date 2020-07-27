@@ -29,19 +29,18 @@ export default class NewsCardList {
       this._toggleButtonVisibility(newsContainerDom.parentElement.querySelector('.button'));
     }
 
-    console.log(arr);
-
   }
 
   showMore(arr) {
     this.renderNews(arr);
   }
 
-  setSavedAndShowedProp(arr) {
+  setSavedAndShowedProp(arr, keyword) {
 
     arr.forEach(element => {
       element.showed = false;
       element.saved = false;
+      element.keyword = keyword;
     });
     return arr;
   }

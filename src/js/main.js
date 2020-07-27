@@ -8,11 +8,27 @@ import NewsCardList from './components/NewsCardList';
 import Overlay from './components/Overlay';
 import Popup from './components/Popup';
 import FormValidator from './components/FormValidator';
+import Header from './components/Header';
 
-// пропишем константы
-const apiKey = "72247f4ab53b48cf97e40059a80e1d5d";
-const apiURL = "https://praktikum.tk/news/v2/everything";
+// импортируем вспомогательные функции
+import signout from './utils/auth/signout';
+import getToken from './utils/auth/getToken';
+import getCurrentUser from './utils/auth/getCurrentUser';
+import getNewUser from './utils/auth/getNewUser';
+
+// загрузим api конфигурации
+import {
+  apiKey,
+  apiURL,
+  apiLinkLogin,
+  apiLinkSignup,
+  apiLinkSignin,
+  apiLinkSignout
+} from './config';
+
+// переменные страницы
 let arrNews = [];
+let currentUser = {};
 
 // найдем элементы управления на странице
 const authorizationButtonsList = document.querySelectorAll('.authorization-button');
@@ -24,12 +40,17 @@ const openSignupPopupLink = document.forms.loginForm.elements.openSignupPopupLin
 const openLoginPopupLink = document.forms.signupForm.elements.openLoginPopupLink;
 const signupButton = document.forms.signupForm.elements.signupButton;
 const loginLink = document.forms.registeredForm.elements.loginLink;
+const signinButton = document.forms.loginForm.elements.loginButton;
+const logoutHeaderButton = document.querySelectorAll('.authorization-button__text_status_logged-out');
+const loginImg = document.querySelectorAll('.authorization-button__image');
+const loginHeaderButton = document.querySelectorAll('.authorization-button__text_status_logged-in');
 
 // найдем блоки и элементы на странице
 const articlesDOM = document.querySelector('.search-result__container');
 const articlesNotFoundDOM = document.querySelector('.search-result__container_type_not-found');
 const articlesPreloaderDOM = document.querySelector('.search-result__container_type_preloader');
 const newsContainerDom = document.querySelector('.news-grid');
+const menuSavedArticles = document.querySelectorAll('.menu__item_saved_articles');
 
 // создаем экземпляры классов
 const newsCard = new NewsCard();
@@ -65,19 +86,48 @@ const popupError = new Popup(
   }
 );
 const newsApi = new NewsApi(articlesDOM, articlesNotFoundDOM, articlesPreloaderDOM, apiKey, apiURL);
+const header = new Header();
 
 
-// вешаем обработчики событий
-
+// authorization button
 // клик по кнопке авторизация
 authorizationButtonsList.forEach(function (item) {
   item.addEventListener('click', () => {
     event.preventDefault();
-    popupSignin.open();
-    mobileMenuToggler.checked = false;
+    if (!currentUser.name) {
+      // если пользователь не залогинен, то мы не знаем его имя, кнопка выполняет функцию signin
+      popupSignin.open();
+      mobileMenuToggler.checked = false;
+    } else {
+      // если пользователь залогинен и его имя нам известно, то кнопка выполняет функцию signout
+      let promiseSignout = signout(apiLinkSignout);
+      promiseSignout
+        .then((result) => {
+          // если разлогинились занулим переменную currentUser
+          currentUser = {};
+          // перерисуем хэдэр
+          header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+          // сделаем редирект на главную
+          document.location.href = '/';
+          // перезагрузим страницу
+          Locate.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+          currentUser = {};
+          // перерисуем хэдэр
+          header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+          // сделаем редирект на главную
+          document.location.href = '/';
+          // перезагрузим страницу
+          Locate.reload();
+        })
+    }
   })
 });
 
+
+// popup handlers
 // кнопки в формах, для переключения попапов
 openLoginPopupLink.addEventListener('click', () => {
   event.preventDefault();
@@ -94,32 +144,64 @@ loginLink.addEventListener('click', () => {
 });
 signupButton.addEventListener('click', () => {
 
-    event.preventDefault();
-    // путь https
-    const apiLink = "https://apinews.ra404.ru/signup";
+  event.preventDefault();
 
-    //получим пользователя с сервера
-    const emailField = document.forms.signupForm.elements.email.value;
-    const passField = document.forms.signupForm.elements.password.value;
-    const nameField = document.forms.signupForm.elements.name.value;
+  //получим пользователя с сервера
+  const emailField = document.forms.signupForm.elements.email.value;
+  const passField = document.forms.signupForm.elements.password.value;
+  const nameField = document.forms.signupForm.elements.name.value;
 
-    let newUser = getNewUser(apiLink, emailField, passField, nameField);
-    newUser
-      .then((result) => {
-        // console.log(result);
-        popupSignup.close();
-        popupRegistered.open();
-      })
-      .catch((err) => {
-        // console.log(err);
-        popupSignup.close();
-        popupRegistered.close();
-        popupError.setHeading(err);
-        popupError.open();
-      });
+  let newUser = getNewUser(apiLinkSignup, emailField, passField, nameField);
+  newUser
+    .then((result) => {
+      popupSignup.close();
+      popupRegistered.open();
+    })
+    .catch((err) => {
+      popupSignup.close();
+      popupRegistered.close();
+      popupError.setHeading(err);
+      popupError.open();
+    });
 
-})
+});
+signinButton.addEventListener('click', () => {
+  event.preventDefault();
 
+  const emailField = document.forms.loginForm.elements.email.value;
+  const passField = document.forms.loginForm.elements.password.value;
+
+  //получим карточки с сервера
+  let promiseToken = getToken(apiLinkSignin, emailField, passField);
+  promiseToken
+    .then((result) => {
+
+      // авторизацию прошли, токен получили, записали токен в куки
+
+      //теперь нужно обратиться на users/me и показать наш токен, нам вернется имя пользователя
+      let currentUserPromise = getCurrentUser(apiLinkLogin);
+      currentUserPromise
+        .then((user) => {
+          // console.log(user.data);
+          currentUser.name = user.data.name;
+          currentUser.email = user.data.email;
+          currentUser._id = user.data._id;
+          popupSignin.close();
+          // перерисуем хэдэр
+          header.setAuthorizedHeader(currentUser.name, logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+        })
+        .catch(() => {
+          console.log("Не удалось прочитать токен! Проверьте не блокирует ли ваш браузер куки!");
+        })
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
+});
+
+
+// news handlers
 // клик по кнопке найти
 searchButton.addEventListener('click', () => {
   event.preventDefault();
@@ -129,9 +211,12 @@ searchButton.addEventListener('click', () => {
       if (result.articles.length > 0) {
         // Рендерим список карточек и показываем секцию с карточками
         arrNews = [];
-        arrNews = newsCardList.setSavedAndShowedProp(result.articles);
+        arrNews = newsCardList.setSavedAndShowedProp(result.articles, searchString.value);
         newsCardList.clear();
         newsCardList.renderNews(arrNews);
+        if (arrNews.length > 3) {
+          showMoreButton.classList.remove('button_hide');
+        }
         newsApi.showArticlesSection();
       } else {
         // выведем блок ничего не найдено
@@ -151,34 +236,23 @@ showMoreButton.addEventListener('click', () => {
   newsCardList.showMore(arrNews);
 });
 
-function getNewUser(apiLink, emailValue, passValue, nameValue) {
-  return new Promise(function (resolve, reject) {
 
-    fetch(apiLink,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          email: emailValue,
-          password: passValue,
-          name: nameValue
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include'
-      })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        //если ошибка, переходим в catch
-        reject(`Ошибка: ${res.status} ${res.statusText}`);
-      })
-      .then((result) => {
-        resolve(result);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+// проверим, не залогинен ли пользователь
+if (!currentUser.name) {
+  // если в куках лежит не просроченный jwt ключ залогинимся
+  let currentUserPromise = getCurrentUser(apiLinkLogin);
+  currentUserPromise
+    .then((user) => {
+      currentUser.name = user.data.name;
+      currentUser.email = user.data.email;
+      currentUser._id = user.data._id;
+      // перерисуем хэдэр
+      header.setAuthorizedHeader(currentUser.name, logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+    })
+    .catch((err) => {
+      //в куках нет действующего ключа
+      currentUser = {};
+      // перерисуем хэдэр
+      header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+    })
 }

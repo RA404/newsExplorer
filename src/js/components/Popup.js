@@ -19,7 +19,7 @@ export default class Popup extends BaseComponent {
     // привяжем this к методам
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
-    this._login = this._login.bind(this);
+    //this._login = this._login.bind(this);
     // this._signup = this._signup.bind(this);
     this.setHeading = this.setHeading.bind(this);
     /*this._openSignupForm = this._openSignupForm.bind(this);
@@ -55,11 +55,11 @@ export default class Popup extends BaseComponent {
       }
     }
 
-    if (this.loginButton) {
+    /*if (this.loginButton) {
       this.loginButton.addEventListener('click', this._login);
     }
 
-    /*if (this.signupButton) {
+    if (this.signupButton) {
       this.signupButton.addEventListener('click', this._signup);
     }*/
 
@@ -95,83 +95,6 @@ export default class Popup extends BaseComponent {
     if (heading) {
       heading.textContent = headingText;
     }
-  }
-
-  _login() {
-    event.preventDefault();
-
-    const apiLink = "https://apinews.ra404.ru/signin";
-
-    //получим карточки с сервера
-    let promiseToken = this._getToken(apiLink, this.emailField.value, this.passField.value);
-    promiseToken
-      .then((result) => {
-        console.log(result);
-        //document.cookie = `jwt=${result.token}`;
-        // авторизацию прошли, токен получили, записали токен в куки
-
-        //теперь нужно обратиться на users/me и показать наш токен, нам вернется имя пользователя
-        //-----
-        return new Promise(function(resolve, reject) {
-          //путь https
-          fetch('https://apinews.ra404.ru/users/me',
-          {
-            credentials: 'include',
-          })
-            .then(res => {
-              if (res.ok) {
-                return res.json();
-              }
-              //если ошибка, переходим в catch
-              return reject(`Ошибка: ${res.status} ${res.statusText}`);
-            })
-            .then((result) => {
-              resolve(result);
-            })
-            .catch((err) => {
-              reject(err);
-            });
-
-        });
-        //-----
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-
-
-  }
-
-  _getToken(apiLink, emailValue, passValue) {
-    return new Promise(function (resolve, reject) {
-
-      fetch(apiLink,
-        {
-          method: 'POST',
-          body: JSON.stringify({
-            email: emailValue,
-            password: passValue
-          }),
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          credentials: 'include'
-        })
-        .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-          //если ошибка, переходим в catch
-          reject(`Ошибка: ${res.status} ${res.statusText}`);
-        })
-        .then((result) => {
-          resolve(result);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
   }
 
   _validation(elem) {
