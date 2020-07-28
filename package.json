@@ -1,6 +1,6 @@
 {
   "name": "newsExplorer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "service where you can find news and save them in your account",
   "main": "'./js/main.js'",
   "scripts": {
