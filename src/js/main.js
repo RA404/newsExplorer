@@ -191,8 +191,28 @@ signinButton.addEventListener('click', () => {
           currentUser.email = user.data.email;
           currentUser._id = user.data._id;
           popupSignin.close();
+
+          // пулочим массив уже сохраненных карточек
+          let myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
+          myNewsArrPromise
+            .then((articles) => {
+              articles.data.forEach((item) => {
+                myNewsArr.push(item);
+              })
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+
           // перерисуем хэдэр
           header.setAuthorizedHeader(currentUser.name, logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+
+          //очистим карточки после логина мы не знаем какие у нас сохранены какие нет
+          arrNews = [];
+          // очистим секцию
+          newsCardList.clear();
+          showMoreButton.classList.add('button_hide');
+          articlesDOM.classList.add('search-result__container_hidden');
         })
         .catch(() => {
           console.log("Не удалось прочитать токен! Проверьте не блокирует ли ваш браузер куки!");
@@ -222,7 +242,7 @@ searchButton.addEventListener('click', () => {
         arrNews = newsCardList.setSavedAndShowedProp(result.articles, searchString.value, myNewsArr);
         // очистим секцию и выведем результат
         newsCardList.clear();
-        newsCardList.renderNews(arrNews);
+        newsCardList.renderNews(arrNews, currentUser.name);
         if (arrNews.length > 3) {
           showMoreButton.classList.remove('button_hide');
         }
@@ -242,7 +262,7 @@ searchButton.addEventListener('click', () => {
 
 // клик по кнопке показать еще
 showMoreButton.addEventListener('click', () => {
-  newsCardList.showMore(arrNews);
+  newsCardList.showMore(arrNews, currentUser.name);
 });
 
 // обработка кликов по списку карточек
@@ -273,9 +293,8 @@ newsContainerDom.addEventListener('click', () => {
           let delArticlesPromise = newsCardList.deleteNews(apiLinkArticles, elId);
           delArticlesPromise
             .then((deletedArticles) => {
-              console.log(deletedArticles);
               // раз с бэкенда удалили удалим из массива
-              for (var i = myNewsArr.length - 1; i >= 0; i--) {
+              for (let i = myNewsArr.length - 1; i >= 0; i--) {
                 if (myNewsArr[i]._id === elId) {
                   myNewsArr.splice(i, 1);
                 }
@@ -295,7 +314,7 @@ newsContainerDom.addEventListener('click', () => {
               .then((result) => {
                 // успешно добавили на бэкенд, добавим в массив моих новостей
                 // (не будем этот массив повторно дергать с сервера, один раз запросом получили массив своих новостей, дальше локально с ним работаем, лишний раз не дергаем сервер)
-                myNewsArr.push(result);
+                myNewsArr.push(result.data);
               })
               .catch((err) => {
                 console.log(err);

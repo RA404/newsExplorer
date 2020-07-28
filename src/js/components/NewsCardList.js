@@ -7,36 +7,39 @@ export default class NewsCardList {
 
   }
 
-  renderNews(arr, newsContainerDom = this.newsContainerDom, newsCard = this.newsCard, savedNewsTemplate = false) {
+  renderNews(arr, currentUser = false, savedNewsTemplate = false, newsContainerDom = this.newsContainerDom, newsCard = this.newsCard) {
 
-    let i = 0;
-    const lastItem = arr[arr.length - 1];
-    let lastItemShowed = false;
+    if (!savedNewsTemplate) {
+      let i = 0;
+      const lastItem = arr[arr.length - 1];
+      let lastItemShowed = false;
 
-    arr.forEach(function (item) {
-      if (!item.showed && i < 3) {
-        if (savedNewsTemplate) {
-          newsContainerDom.insertAdjacentHTML('beforeend', newsCard.getTemplateSavedNews(item));
-        } else {
-          newsContainerDom.insertAdjacentHTML('beforeend', newsCard.getTemplate(item));
+      arr.forEach(function (item) {
+        if (!item.showed && i < 3) {
+            newsContainerDom.insertAdjacentHTML('beforeend', newsCard.getTemplate(item, currentUser));
+          i++;
+          item.showed = true;
+          if (item === lastItem) {
+            // если последний элемент показан скроем кнопку "показать еще"
+            lastItemShowed = true;
+          }
         }
-        i++;
-        item.showed = true;
-        if (item === lastItem) {
-          // если последний элемент показан скроем кнопку "показать еще"
-          lastItemShowed = true;
-        }
+      });
+
+      if (lastItemShowed) {
+        this._toggleButtonVisibility(newsContainerDom.parentElement.querySelector('.button'));
       }
-    });
-
-    if (lastItemShowed) {
-      this._toggleButtonVisibility(newsContainerDom.parentElement.querySelector('.button'));
+    } else {
+      // сохраненные статьи просто выводим сколько есть
+      arr.forEach(function (item) {
+        newsContainerDom.insertAdjacentHTML('beforeend', newsCard.getTemplateSavedNews(item));
+      });
     }
 
   }
 
-  showMore(arr) {
-    this.renderNews(arr);
+  showMore(arr, currentUser = false) {
+    this.renderNews(arr, currentUser);
   }
 
   setSavedAndShowedProp(arr, keyword, myArr) {
@@ -57,7 +60,7 @@ export default class NewsCardList {
   clear(newsContainerDom = this.newsContainerDom) {
     const items = newsContainerDom.querySelectorAll('.news-grid__item');
     items.forEach(function(item) {
-      newsContainerDom.removeChild(item)
+      newsContainerDom.removeChild(item);
     });
   }
 
