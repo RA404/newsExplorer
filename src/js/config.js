@@ -4,6 +4,7 @@ const apiLinkLogin = "https://apinews.ra404.ru/users/me";
 const apiLinkSignup = "https://apinews.ra404.ru/signup";
 const apiLinkSignin = "https://apinews.ra404.ru/signin";
 const apiLinkSignout = "https://apinews.ra404.ru/signout";
+const apiLinkArticles = "https://apinews.ra404.ru/articles";
 
 module.exports = {
   apiKey,
@@ -11,5 +12,6 @@ module.exports = {
   apiLinkLogin,
   apiLinkSignup,
   apiLinkSignin,
-  apiLinkSignout
+  apiLinkSignout,
+  apiLinkArticles
 };

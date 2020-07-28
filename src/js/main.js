@@ -15,6 +15,9 @@ import signout from './utils/auth/signout';
 import getToken from './utils/auth/getToken';
 import getCurrentUser from './utils/auth/getCurrentUser';
 import getNewUser from './utils/auth/getNewUser';
+import getDomNews from './utils/getDomNews';
+import thisNewsExist from './utils/thisNewsExist';
+import getNewsByUrl from './utils/getNewsByUrl';
 
 // загрузим api конфигурации
 import {
@@ -23,12 +26,14 @@ import {
   apiLinkLogin,
   apiLinkSignup,
   apiLinkSignin,
-  apiLinkSignout
+  apiLinkSignout,
+  apiLinkArticles
 } from './config';
 
 // переменные страницы
 let arrNews = [];
 let currentUser = {};
+var myNewsArr = []; // сохраненные карточки нужно видеть во всех областях видимости, тогда будем локально с ними работать и реже дергать сервер
 
 // найдем элементы управления на странице
 const authorizationButtonsList = document.querySelectorAll('.authorization-button');
@@ -212,7 +217,10 @@ searchButton.addEventListener('click', () => {
       if (result.articles.length > 0) {
         // Рендерим список карточек и показываем секцию с карточками
         arrNews = [];
-        arrNews = newsCardList.setSavedAndShowedProp(result.articles, searchString.value);
+
+        // подготовим полученный массив
+        arrNews = newsCardList.setSavedAndShowedProp(result.articles, searchString.value, myNewsArr);
+        // очистим секцию и выведем результат
         newsCardList.clear();
         newsCardList.renderNews(arrNews);
         if (arrNews.length > 3) {
@@ -237,6 +245,78 @@ showMoreButton.addEventListener('click', () => {
   newsCardList.showMore(arrNews);
 });
 
+// обработка кликов по списку карточек
+newsContainerDom.addEventListener('click', () => {
+  console.log(event);
+  if (event.target.classList.contains('news-grid__flag')) {
+    // кликнули во флажок тут 3 действия: открыть попап для входа; добавить новость; удалить новость
+    if (!currentUser.name) {
+      // не залогинены - открываем попап
+      popupSignin.open();
+    } else {
+      // залогинены - проверим не сохранена ли карточка уже, если нет сохраняем, если да удаляем
+
+      // получим DOM элемент карточку
+      let newsDomElement = getDomNews(event.target);
+
+      // получим DOM элемент флаг
+      let newsDomFlag = event.target;
+
+      // найдем ссылку на новость и проверим есть ли такая новость в уже сохраненных
+      const urlNews = newsDomElement.querySelector('.news-grid__url');
+      if (urlNews) {
+        if (thisNewsExist(myNewsArr, urlNews.textContent)) {
+          // если новость существует, то ее нужно удалить (и с бэкенда и из массива)
+          newsDomFlag.classList.remove('news-grid__flag_type_marked');
+
+          let elId = thisNewsExist(myNewsArr, urlNews.textContent);
+          let delArticlesPromise = newsCardList.deleteNews(apiLinkArticles, elId);
+          delArticlesPromise
+            .then((deletedArticles) => {
+              console.log(deletedArticles);
+              // раз с бэкенда удалили удалим из массива
+              for (var i = myNewsArr.length - 1; i >= 0; i--) {
+                if (myNewsArr[i]._id === elId) {
+                  myNewsArr.splice(i, 1);
+                }
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        } else {
+          // если нет то добавить (и на бэкенд и в массив)
+          newsDomFlag.classList.add('news-grid__flag_type_marked');
+          let arrItem = getNewsByUrl(arrNews, urlNews.textContent);
+          if (arrItem) {
+            // добавили новость
+            let newCardPromise = newsCardList.addNews(apiLinkArticles, arrItem);
+            newCardPromise
+              .then((result) => {
+                // успешно добавили на бэкенд, добавим в массив моих новостей
+                // (не будем этот массив повторно дергать с сервера, один раз запросом получили массив своих новостей, дальше локально с ним работаем, лишний раз не дергаем сервер)
+                myNewsArr.push(result);
+              })
+              .catch((err) => {
+                console.log(err);
+              })
+          }
+        }
+      }
+    }
+  } else if (event.target.classList.contains('news-grid')) {
+    // если кликнули просто в поле, то ничего не делаем, не тратим ресурсы
+  } else {
+    // получим DOM элемент
+    let newsDomElement = getDomNews(event.target);
+    // найдем ссылку на новость и откроем ее в новом окне
+    const urlNews = newsDomElement.querySelector('.news-grid__url');
+    if (urlNews) {
+      window.open(urlNews.textContent);
+    }
+  }
+});
+
 
 // проверим, не залогинен ли пользователь
 if (!currentUser.name) {
@@ -247,6 +327,19 @@ if (!currentUser.name) {
       currentUser.name = user.data.name;
       currentUser.email = user.data.email;
       currentUser._id = user.data._id;
+
+      // пулочим массив уже сохраненных карточек
+      let myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
+      myNewsArrPromise
+        .then((articles) => {
+          articles.data.forEach((item) => {
+            myNewsArr.push(item);
+          })
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+
       // перерисуем хэдэр
       header.setAuthorizedHeader(currentUser.name, logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
     })
@@ -255,5 +348,17 @@ if (!currentUser.name) {
       currentUser = {};
       // перерисуем хэдэр
       header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+    })
+} else {
+  // если пользователь залогинен, то получим его сохраненные карточки
+  let myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
+  myNewsArrPromise
+    .then((articles) => {
+      articles.data.forEach((item) => {
+        myNewsArr.push(item);
+      })
+    })
+    .catch((err) => {
+      console.log(err);
     })
 }

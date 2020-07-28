@@ -7,7 +7,7 @@ export default class NewsCardList {
 
   }
 
-  renderNews(arr, newsContainerDom = this.newsContainerDom, newsCard = this.newsCard) {
+  renderNews(arr, newsContainerDom = this.newsContainerDom, newsCard = this.newsCard, savedNewsTemplate = false) {
 
     let i = 0;
     const lastItem = arr[arr.length - 1];
@@ -15,7 +15,11 @@ export default class NewsCardList {
 
     arr.forEach(function (item) {
       if (!item.showed && i < 3) {
-        newsContainerDom.insertAdjacentHTML('beforeend', newsCard.getTemplate(item));
+        if (savedNewsTemplate) {
+          newsContainerDom.insertAdjacentHTML('beforeend', newsCard.getTemplateSavedNews(item));
+        } else {
+          newsContainerDom.insertAdjacentHTML('beforeend', newsCard.getTemplate(item));
+        }
         i++;
         item.showed = true;
         if (item === lastItem) {
@@ -35,12 +39,17 @@ export default class NewsCardList {
     this.renderNews(arr);
   }
 
-  setSavedAndShowedProp(arr, keyword) {
+  setSavedAndShowedProp(arr, keyword, myArr) {
 
     arr.forEach(element => {
       element.showed = false;
       element.saved = false;
       element.keyword = keyword;
+      myArr.forEach(item => {
+        if (item.link == element.url) {
+          element.elId = item._id;
+        }
+      })
     });
     return arr;
   }
@@ -49,6 +58,97 @@ export default class NewsCardList {
     const items = newsContainerDom.querySelectorAll('.news-grid__item');
     items.forEach(function(item) {
       newsContainerDom.removeChild(item)
+    });
+  }
+
+  getMyNews(apiLinkArticles) {
+    return new Promise(function (resolve, reject) {
+
+      fetch(apiLinkArticles,
+        {
+          credentials: 'include',
+        })
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+          //если ошибка, переходим в catch
+          return reject(`Ошибка: ${res.status} ${res.statusText}`);
+        })
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+
+    });
+  }
+
+  addNews(apiLinkArticles, arrItem) {
+    return new Promise(function (resolve, reject) {
+
+      fetch(apiLinkArticles,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            title: arrItem.title,
+            text: arrItem.content,
+            keyword: arrItem.keyword,
+            date: arrItem.publishedAt,
+            source: arrItem.source.name,
+            link: arrItem.url,
+            image: arrItem.urlToImage,
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include'
+        })
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+          //если ошибка, переходим в catch
+          reject(`Ошибка: ${res.status} ${res.statusText}`);
+
+        })
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    });
+  }
+
+  deleteNews(apiLinkArticles, idNews) {
+    return new Promise(function (resolve, reject) {
+
+      const linkWithId = apiLinkArticles + '/' + idNews;
+
+      fetch(linkWithId,
+        {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include'
+        })
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+          //если ошибка, переходим в catch
+          reject(`Ошибка: ${res.status} ${res.statusText}`);
+
+        })
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   }
 

@@ -4,6 +4,7 @@
 @import url('./__date/news-grid__date.css');
 @import url('./__text/news-grid__text.css');
 @import url('./__source/news-grid__source.css');
+@import url('./__url/news-grid__url.css');
 
 .news-grid {
   display: grid;
