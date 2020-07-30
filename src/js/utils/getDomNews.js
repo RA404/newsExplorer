@@ -1,4 +1,4 @@
-export default function getDomNews(currentDom) {
+export default function getDomNews(currentDom, maxIterations = 10) {
   // нужно получить DOM элемент карточку, чтобы с ней работать
   let cardDomElement = currentDom;
   let getElement = false;
@@ -10,7 +10,7 @@ export default function getDomNews(currentDom) {
     } else {
       cardDomElement = cardDomElement.parentNode;
     }
-  } while (getElement === false && i < 10);
+  } while (getElement === false && i < maxIterations);
 
   return cardDomElement;
 }

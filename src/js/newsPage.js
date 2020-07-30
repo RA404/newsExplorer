@@ -4,10 +4,9 @@ import '../pages/newsPage/index.css';
 import Header from './components/Header';
 import NewsCard from './components/NewsCard';
 import NewsCardList from './components/NewsCardList';
+import AccountApi from './api/AccountApi';
 
 // импортируем вспомогательные функции
-import getCurrentUser from './utils/auth/getCurrentUser';
-import signout from './utils/auth/signout';
 import getKeywordsString from './utils/getKeywordsString';
 import getDomNews from './utils/getDomNews';
 import thisNewsExist from './utils/thisNewsExist';
@@ -39,6 +38,7 @@ const newsContainerDom = document.querySelector('.news-grid');
 const header = new Header();
 const newsCard = new NewsCard();
 const newsCardList = new NewsCardList(newsContainerDom, newsCard);
+const accountApi = new AccountApi();
 
 // authorization button
 // клик по кнопке авторизация
@@ -57,7 +57,7 @@ authorizationButtonsList.forEach(function (item) {
       Locate.reload();
     } else {
       // если пользователь залогинен и его имя нам известно, то кнопка выполняет функцию signout
-      let promiseSignout = signout(apiLinkSignout);
+      let promiseSignout = accountApi.signout(apiLinkSignout);
       promiseSignout
         .then((result) => {
           // если разлогинились занулим переменную currentUser
@@ -140,7 +140,7 @@ newsContainerDom.addEventListener('click', () => {
 // проверим, не залогинен ли пользователь
 if (!currentUser.name) {
   // если в куках лежит не просроченный jwt ключ залогинимся
-  let currentUserPromise = getCurrentUser(apiLinkLogin);
+  let currentUserPromise = accountApi.getCurrentUser(apiLinkLogin);
   currentUserPromise
     .then((user) => {
       currentUser.name = user.data.name;

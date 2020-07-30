@@ -11,10 +11,6 @@ import FormValidator from './components/FormValidator';
 import Header from './components/Header';
 
 // импортируем вспомогательные функции
-import signout from './utils/auth/signout';
-import getToken from './utils/auth/getToken';
-import getCurrentUser from './utils/auth/getCurrentUser';
-import getNewUser from './utils/auth/getNewUser';
 import getDomNews from './utils/getDomNews';
 import thisNewsExist from './utils/thisNewsExist';
 import getNewsByUrl from './utils/getNewsByUrl';
@@ -29,6 +25,7 @@ import {
   apiLinkSignout,
   apiLinkArticles
 } from './config';
+import AccountApi from './api/AccountApi';
 
 // переменные страницы
 let arrNews = [];
@@ -92,6 +89,7 @@ const popupError = new Popup(
 );
 const newsApi = new NewsApi(articlesDOM, articlesNotFoundDOM, articlesPreloaderDOM, apiKey, apiURL);
 const header = new Header();
+const accountApi = new AccountApi();
 
 
 // authorization button
@@ -105,7 +103,7 @@ authorizationButtonsList.forEach(function (item) {
       mobileMenuToggler.checked = false;
     } else {
       // если пользователь залогинен и его имя нам известно, то кнопка выполняет функцию signout
-      let promiseSignout = signout(apiLinkSignout);
+      let promiseSignout = accountApi.signout(apiLinkSignout);
       promiseSignout
         .then((result) => {
           // если разлогинились занулим переменную currentUser
@@ -113,7 +111,7 @@ authorizationButtonsList.forEach(function (item) {
           // перерисуем хэдэр
           header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
           // сделаем редирект на главную
-          document.location.href = '/';
+          // document.location.href = '/';
           // перезагрузим страницу
           Locate.reload();
         })
@@ -122,14 +120,13 @@ authorizationButtonsList.forEach(function (item) {
           // перерисуем хэдэр
           header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
           // сделаем редирект на главную
-          document.location.href = '/';
+          // document.location.href = '/';
           // перезагрузим страницу
           Locate.reload();
         })
     }
   })
 });
-
 
 // popup handlers
 // кнопки в формах, для переключения попапов
@@ -155,7 +152,7 @@ signupButton.addEventListener('click', () => {
   const passField = document.forms.signupForm.elements.password.value;
   const nameField = document.forms.signupForm.elements.name.value;
 
-  let newUser = getNewUser(apiLinkSignup, emailField, passField, nameField);
+  let newUser = accountApi.getNewUser(apiLinkSignup, emailField, passField, nameField);
   newUser
     .then((result) => {
       popupSignup.close();
@@ -176,14 +173,14 @@ signinButton.addEventListener('click', () => {
   const passField = document.forms.loginForm.elements.password.value;
 
   //получим карточки с сервера
-  let promiseToken = getToken(apiLinkSignin, emailField, passField);
+  let promiseToken = accountApi.getToken(apiLinkSignin, emailField, passField);
   promiseToken
     .then((result) => {
 
       // авторизацию прошли, токен получили, записали токен в куки
 
       //теперь нужно обратиться на users/me и показать наш токен, нам вернется имя пользователя
-      let currentUserPromise = getCurrentUser(apiLinkLogin);
+      let currentUserPromise = accountApi.getCurrentUser(apiLinkLogin);
       currentUserPromise
         .then((user) => {
           // console.log(user.data);
@@ -286,8 +283,6 @@ newsContainerDom.addEventListener('click', () => {
       const urlNews = newsDomElement.querySelector('.news-grid__url');
       if (urlNews) {
         if (thisNewsExist(myNewsArr, urlNews.textContent)) {
-          // если новость существует, то ее нужно удалить (и с бэкенда и из массива)
-          newsDomFlag.classList.remove('news-grid__flag_type_marked');
 
           let elId = thisNewsExist(myNewsArr, urlNews.textContent);
           let delArticlesPromise = newsCardList.deleteNews(apiLinkArticles, elId);
@@ -299,13 +294,15 @@ newsContainerDom.addEventListener('click', () => {
                   myNewsArr.splice(i, 1);
                 }
               }
+
+              // пришел успешный ответ с сервера, из массива удалили, снимем флаг в верстке
+              newsDomFlag.classList.remove('news-grid__flag_type_marked');
             })
             .catch((err) => {
               console.log(err);
             })
         } else {
           // если нет то добавить (и на бэкенд и в массив)
-          newsDomFlag.classList.add('news-grid__flag_type_marked');
           let arrItem = getNewsByUrl(arrNews, urlNews.textContent);
           if (arrItem) {
             // добавили новость
@@ -315,6 +312,8 @@ newsContainerDom.addEventListener('click', () => {
                 // успешно добавили на бэкенд, добавим в массив моих новостей
                 // (не будем этот массив повторно дергать с сервера, один раз запросом получили массив своих новостей, дальше локально с ним работаем, лишний раз не дергаем сервер)
                 myNewsArr.push(result.data);
+                // поствим флаг при успешном ответе от сервера
+                newsDomFlag.classList.add('news-grid__flag_type_marked');
               })
               .catch((err) => {
                 console.log(err);
@@ -340,7 +339,7 @@ newsContainerDom.addEventListener('click', () => {
 // проверим, не залогинен ли пользователь
 if (!currentUser.name) {
   // если в куках лежит не просроченный jwt ключ залогинимся
-  let currentUserPromise = getCurrentUser(apiLinkLogin);
+  let currentUserPromise = accountApi.getCurrentUser(apiLinkLogin);
   currentUserPromise
     .then((user) => {
       currentUser.name = user.data.name;
