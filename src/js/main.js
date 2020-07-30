@@ -145,22 +145,36 @@ signupButton.addEventListener('click', () => {
 
   event.preventDefault();
 
-  //получим пользователя с сервера
+  // получим пользователя с сервера
   const emailField = escape(document.forms.signupForm.elements.email.value);
   const passField = escape(document.forms.signupForm.elements.password.value);
   const nameField = escape(document.forms.signupForm.elements.name.value);
+
+  // перед отправкой делаем поля недоступными
+  document.forms.signupForm.elements.email.disabled = true;
+  document.forms.signupForm.elements.password.disabled = true;
+  document.forms.signupForm.elements.name.disabled = true;
 
   const newUser = accountApi.getNewUser(apiLinkSignup, emailField, passField, nameField);
   newUser
     .then((result) => {
       popupSignup.close();
       popupRegistered.open();
+      // ответ от сервера пришел, можно заново вводить
+      document.forms.signupForm.elements.email.disabled = false;
+      document.forms.signupForm.elements.password.disabled = false;
+      document.forms.signupForm.elements.name.disabled = false;
     })
     .catch((err) => {
       popupSignup.close();
       popupRegistered.close();
       popupError.setHeading(err);
       popupError.open();
+
+      // ответ от сервера пришел, можно заново вводить
+      document.forms.signupForm.elements.email.disabled = false;
+      document.forms.signupForm.elements.password.disabled = false;
+      document.forms.signupForm.elements.name.disabled = false;
     });
 
 });
@@ -169,6 +183,10 @@ signinButton.addEventListener('click', () => {
 
   const emailField = escape(document.forms.loginForm.elements.email.value);
   const passField = escape(document.forms.loginForm.elements.password.value);
+
+  // перед отправкой делаем поля недоступными
+  document.forms.loginForm.elements.email.disabled = true;
+  document.forms.loginForm.elements.password.disabled = true;
 
   //получим карточки с сервера
   const promiseToken = accountApi.getToken(apiLinkSignin, emailField, passField);
@@ -186,6 +204,10 @@ signinButton.addEventListener('click', () => {
           currentUser.email = user.data.email;
           currentUser._id = user.data._id;
           popupSignin.close();
+
+          // ответ пришел, можно разблокировать поля
+          document.forms.loginForm.elements.email.disabled = false;
+          document.forms.loginForm.elements.password.disabled = false;
 
           // пулочим массив уже сохраненных карточек
           const myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
@@ -211,12 +233,20 @@ signinButton.addEventListener('click', () => {
         })
         .catch(() => {
           console.log("Не удалось прочитать токен! Проверьте не блокирует ли ваш браузер куки!");
+
+          // ответ пришел, можно разблокировать поля
+          document.forms.loginForm.elements.email.disabled = false;
+          document.forms.loginForm.elements.password.disabled = false;
         })
     })
     .catch((err) => {
       popupSignin.close();
       popupError.setHeading(err);
       popupError.open();
+
+      // ответ пришел, можно разблокировать поля
+      document.forms.loginForm.elements.email.disabled = false;
+      document.forms.loginForm.elements.password.disabled = false;
     });
 
 });
@@ -382,3 +412,13 @@ if (!currentUser.name) {
       console.log(err);
     })
 }
+
+// закрытие любых попапов по нажатию esc
+window.addEventListener('keydown', function (e) {
+  if (e.keyCode === 27) {
+    popupError.close;
+    popupRegistered.close;
+    popupSignin.close;
+    popupSignup.close;
+  }
+});

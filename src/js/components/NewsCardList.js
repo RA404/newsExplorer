@@ -7,7 +7,7 @@ export default class NewsCardList {
 
   }
 
-  renderNews(arr, currentUser = false, savedNewsTemplate = false, newsContainerDom = this.newsContainerDom, newsCard = this.newsCard) {
+  renderNews(arr, currentUser = false, savedNewsTemplate = false, numberOfDisplayedCards = 3, newsContainerDom = this.newsContainerDom, newsCard = this.newsCard) {
 
     if (!savedNewsTemplate) {
       let i = 0;
@@ -15,7 +15,7 @@ export default class NewsCardList {
       let lastItemShowed = false;
 
       arr.forEach(function (item) {
-        if (!item.showed && i < 3) {
+        if (!item.showed && i < numberOfDisplayedCards) {
             newsContainerDom.insertAdjacentHTML('beforeend', newsCard.getTemplate(item, currentUser));
           i++;
           item.showed = true;
