@@ -53,8 +53,7 @@ authorizationButtonsList.forEach(function (item) {
       header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImg, menuSavedArticles);
       // сделаем редирект на главную
       document.location.href = '/';
-      // перезагрузим страницу
-      Locate.reload();
+
     } else {
       // если пользователь залогинен и его имя нам известно, то кнопка выполняет функцию signout
       let promiseSignout = accountApi.signout(apiLinkSignout);
@@ -66,8 +65,7 @@ authorizationButtonsList.forEach(function (item) {
           header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
           // сделаем редирект на главную
           document.location.href = '/';
-          // перезагрузим страницу
-          Locate.reload();
+
         })
         .catch((err) => {
           currentUser = {};
@@ -75,8 +73,7 @@ authorizationButtonsList.forEach(function (item) {
           header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
           // сделаем редирект на главную
           document.location.href = '/';
-          // перезагрузим страницу
-          Locate.reload();
+
         })
     }
   })
@@ -171,8 +168,7 @@ if (!currentUser.name) {
 
           // сделаем редирект на главную
           document.location.href = '/';
-          // перезагрузим страницу
-          Locate.reload();
+
         })
 
       // перерисуем хэдэр
@@ -187,8 +183,7 @@ if (!currentUser.name) {
 
       // сделаем редирект на главную
       document.location.href = '/';
-      // перезагрузим страницу
-      Locate.reload();
+
     })
 } else {
   // если пользователь залогинен, то получим его сохраненные карточки

@@ -112,15 +112,13 @@ authorizationButtonsList.forEach(function (item) {
           currentUser = {};
           // перерисуем хэдэр
           header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
-          // перезагрузим страницу
-          Locate.reload();
+
         })
         .catch((err) => {
           currentUser = {};
           // перерисуем хэдэр
           header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
-          // перезагрузим страницу
-          Locate.reload();
+
         })
     }
   })
@@ -412,3 +410,12 @@ if (!currentUser.name) {
       console.log(err);
     })
 }
+
+window.addEventListener('keydown', function closeFormByKeydown(event) {
+  if (event.keyCode === 27) {
+    popupSignin.close();
+    popupSignup.close();
+    popupError.close();
+    popupRegistered.close();
+  }
+});
