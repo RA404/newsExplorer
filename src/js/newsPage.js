@@ -168,6 +168,11 @@ if (!currentUser.name) {
         })
         .catch((err) => {
           console.log(err);
+
+          // сделаем редирект на главную
+          document.location.href = '/';
+          // перезагрузим страницу
+          Locate.reload();
         })
 
       // перерисуем хэдэр
@@ -179,6 +184,11 @@ if (!currentUser.name) {
       // перерисуем хэдэр
       header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
       titleContainer.textContent = '';
+
+      // сделаем редирект на главную
+      document.location.href = '/';
+      // перезагрузим страницу
+      Locate.reload();
     })
 } else {
   // если пользователь залогинен, то получим его сохраненные карточки

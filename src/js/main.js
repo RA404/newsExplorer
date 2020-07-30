@@ -412,13 +412,3 @@ if (!currentUser.name) {
       console.log(err);
     })
 }
-
-// закрытие любых попапов по нажатию esc
-window.addEventListener('keydown', function (e) {
-  if (e.keyCode === 27) {
-    popupError.close;
-    popupRegistered.close;
-    popupSignin.close;
-    popupSignup.close;
-  }
-});
