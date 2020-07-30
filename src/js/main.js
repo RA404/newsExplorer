@@ -14,6 +14,8 @@ import Header from './components/Header';
 import getDomNews from './utils/getDomNews';
 import thisNewsExist from './utils/thisNewsExist';
 import getNewsByUrl from './utils/getNewsByUrl';
+import escape from './utils/escape';
+import escapeDelete from './utils/escapeDelete';
 
 // загрузим api конфигурации
 import {
@@ -28,8 +30,8 @@ import {
 import AccountApi from './api/AccountApi';
 
 // переменные страницы
-let arrNews = [];
-let currentUser = {};
+let arrNews = []; // содержание массива будет часто меняться
+let currentUser = {}; // изменяемая переменная, может быть записан, а может быть обнулен
 var myNewsArr = []; // сохраненные карточки нужно видеть во всех областях видимости, тогда будем локально с ними работать и реже дергать сервер
 
 // найдем элементы управления на странице
@@ -43,9 +45,9 @@ const openLoginPopupLink = document.forms.signupForm.elements.openLoginPopupLink
 const signupButton = document.forms.signupForm.elements.signupButton;
 const loginLink = document.forms.registeredForm.elements.loginLink;
 const signinButton = document.forms.loginForm.elements.loginButton;
-const logoutHeaderButton = document.querySelectorAll('.authorization-button__text_status_logged-out');
-const loginImg = document.querySelectorAll('.authorization-button__image');
-const loginHeaderButton = document.querySelectorAll('.authorization-button__text_status_logged-in');
+const logoutHeaderButtons = document.querySelectorAll('.authorization-button__text_status_logged-out');
+const loginImgs = document.querySelectorAll('.authorization-button__image');
+const loginHeaderButtons = document.querySelectorAll('.authorization-button__text_status_logged-in');
 
 // найдем блоки и элементы на странице
 const articlesDOM = document.querySelector('.search-result__container');
@@ -109,18 +111,14 @@ authorizationButtonsList.forEach(function (item) {
           // если разлогинились занулим переменную currentUser
           currentUser = {};
           // перерисуем хэдэр
-          header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
-          // сделаем редирект на главную
-          // document.location.href = '/';
+          header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
           // перезагрузим страницу
           Locate.reload();
         })
         .catch((err) => {
           currentUser = {};
           // перерисуем хэдэр
-          header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
-          // сделаем редирект на главную
-          // document.location.href = '/';
+          header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
           // перезагрузим страницу
           Locate.reload();
         })
@@ -152,7 +150,7 @@ signupButton.addEventListener('click', () => {
   const passField = document.forms.signupForm.elements.password.value;
   const nameField = document.forms.signupForm.elements.name.value;
 
-  let newUser = accountApi.getNewUser(apiLinkSignup, emailField, passField, nameField);
+  const newUser = accountApi.getNewUser(apiLinkSignup, emailField, passField, nameField);
   newUser
     .then((result) => {
       popupSignup.close();
@@ -173,14 +171,14 @@ signinButton.addEventListener('click', () => {
   const passField = document.forms.loginForm.elements.password.value;
 
   //получим карточки с сервера
-  let promiseToken = accountApi.getToken(apiLinkSignin, emailField, passField);
+  const promiseToken = accountApi.getToken(apiLinkSignin, emailField, passField);
   promiseToken
     .then((result) => {
 
       // авторизацию прошли, токен получили, записали токен в куки
 
       //теперь нужно обратиться на users/me и показать наш токен, нам вернется имя пользователя
-      let currentUserPromise = accountApi.getCurrentUser(apiLinkLogin);
+      const currentUserPromise = accountApi.getCurrentUser(apiLinkLogin);
       currentUserPromise
         .then((user) => {
           // console.log(user.data);
@@ -190,7 +188,7 @@ signinButton.addEventListener('click', () => {
           popupSignin.close();
 
           // пулочим массив уже сохраненных карточек
-          let myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
+          const myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
           myNewsArrPromise
             .then((articles) => {
               articles.data.forEach((item) => {
@@ -202,7 +200,7 @@ signinButton.addEventListener('click', () => {
             })
 
           // перерисуем хэдэр
-          header.setAuthorizedHeader(currentUser.name, logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+          header.setAuthorizedHeader(currentUser.name, logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
 
           //очистим карточки после логина мы не знаем какие у нас сохранены какие нет
           arrNews = [];
@@ -228,33 +226,37 @@ signinButton.addEventListener('click', () => {
 // клик по кнопке найти
 searchButton.addEventListener('click', () => {
   event.preventDefault();
-  let listOfNews = newsApi.getNews(searchString.value);
-  listOfNews
-    .then((result) => {
-      if (result.articles.length > 0) {
-        // Рендерим список карточек и показываем секцию с карточками
-        arrNews = [];
+  const searchStr = escapeDelete(searchString.value);
+  if (searchStr.length > 0) {
 
-        // подготовим полученный массив
-        arrNews = newsCardList.setSavedAndShowedProp(result.articles, searchString.value, myNewsArr);
-        // очистим секцию и выведем результат
-        newsCardList.clear();
-        newsCardList.renderNews(arrNews, currentUser.name);
-        if (arrNews.length > 3) {
-          showMoreButton.classList.remove('button_hide');
+    const listOfNews = newsApi.getNews(searchStr);
+    listOfNews
+      .then((result) => {
+        if (result.articles.length > 0) {
+          // Рендерим список карточек и показываем секцию с карточками
+          arrNews = [];
+
+          // подготовим полученный массив
+          arrNews = newsCardList.setSavedAndShowedProp(result.articles, searchStr, myNewsArr);
+          // очистим секцию и выведем результат
+          newsCardList.clear();
+          newsCardList.renderNews(arrNews, currentUser.name);
+          if (arrNews.length > 3) {
+            showMoreButton.classList.remove('button_hide');
+          }
+          newsApi.showArticlesSection();
+        } else {
+          // выведем блок ничего не найдено
+          newsApi.showArticlesNotFound();
         }
-        newsApi.showArticlesSection();
-      } else {
-        // выведем блок ничего не найдено
-        newsApi.showArticlesNotFound();
-      }
-    })
-    .catch((err) => {
-      // выведем блок ничего не найдено, с текстом ошибки
-      newsApi.showArticlesError();
-      popupError.setHeading(err);
-      popupError.open();
-    });
+      })
+      .catch((err) => {
+        // выведем блок ничего не найдено, с текстом ошибки
+        newsApi.showArticlesError();
+        popupError.setHeading(err);
+        popupError.open();
+      });
+  }
 });
 
 // клик по кнопке показать еще
@@ -274,18 +276,18 @@ newsContainerDom.addEventListener('click', () => {
       // залогинены - проверим не сохранена ли карточка уже, если нет сохраняем, если да удаляем
 
       // получим DOM элемент карточку
-      let newsDomElement = getDomNews(event.target);
+      const newsDomElement = getDomNews(event.target);
 
       // получим DOM элемент флаг
-      let newsDomFlag = event.target;
+      const newsDomFlag = event.target;
 
       // найдем ссылку на новость и проверим есть ли такая новость в уже сохраненных
       const urlNews = newsDomElement.querySelector('.news-grid__url');
       if (urlNews) {
         if (thisNewsExist(myNewsArr, urlNews.textContent)) {
 
-          let elId = thisNewsExist(myNewsArr, urlNews.textContent);
-          let delArticlesPromise = newsCardList.deleteNews(apiLinkArticles, elId);
+          const elId = thisNewsExist(myNewsArr, urlNews.textContent);
+          const delArticlesPromise = newsCardList.deleteNews(apiLinkArticles, elId);
           delArticlesPromise
             .then((deletedArticles) => {
               // раз с бэкенда удалили удалим из массива
@@ -303,10 +305,10 @@ newsContainerDom.addEventListener('click', () => {
             })
         } else {
           // если нет то добавить (и на бэкенд и в массив)
-          let arrItem = getNewsByUrl(arrNews, urlNews.textContent);
+          const arrItem = getNewsByUrl(arrNews, urlNews.textContent);
           if (arrItem) {
             // добавили новость
-            let newCardPromise = newsCardList.addNews(apiLinkArticles, arrItem);
+            const newCardPromise = newsCardList.addNews(apiLinkArticles, arrItem);
             newCardPromise
               .then((result) => {
                 // успешно добавили на бэкенд, добавим в массив моих новостей
@@ -326,7 +328,7 @@ newsContainerDom.addEventListener('click', () => {
     // если кликнули просто в поле, то ничего не делаем, не тратим ресурсы
   } else {
     // получим DOM элемент
-    let newsDomElement = getDomNews(event.target);
+    const newsDomElement = getDomNews(event.target);
     // найдем ссылку на новость и откроем ее в новом окне
     const urlNews = newsDomElement.querySelector('.news-grid__url');
     if (urlNews) {
@@ -339,7 +341,7 @@ newsContainerDom.addEventListener('click', () => {
 // проверим, не залогинен ли пользователь
 if (!currentUser.name) {
   // если в куках лежит не просроченный jwt ключ залогинимся
-  let currentUserPromise = accountApi.getCurrentUser(apiLinkLogin);
+  const currentUserPromise = accountApi.getCurrentUser(apiLinkLogin);
   currentUserPromise
     .then((user) => {
       currentUser.name = user.data.name;
@@ -347,7 +349,7 @@ if (!currentUser.name) {
       currentUser._id = user.data._id;
 
       // пулочим массив уже сохраненных карточек
-      let myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
+      const myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
       myNewsArrPromise
         .then((articles) => {
           articles.data.forEach((item) => {
@@ -359,17 +361,17 @@ if (!currentUser.name) {
         })
 
       // перерисуем хэдэр
-      header.setAuthorizedHeader(currentUser.name, logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+      header.setAuthorizedHeader(currentUser.name, logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
     })
     .catch((err) => {
       //в куках нет действующего ключа
       currentUser = {};
       // перерисуем хэдэр
-      header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+      header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
     })
 } else {
   // если пользователь залогинен, то получим его сохраненные карточки
-  let myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
+  const myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
   myNewsArrPromise
     .then((articles) => {
       articles.data.forEach((item) => {

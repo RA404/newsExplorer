@@ -6,18 +6,18 @@ export default class NewsCard {
   getTemplate(data, currentUser=false) {
     //описание может быть пустым, в таком случае подставляем контент
     const desc = data.description === null ? data.content : data.description;
-    let classForFlag;
+    const classForFlag = data.elId ? 'news-grid__flag news-grid__flag_type_marked' : 'news-grid__flag';
     let hintField;
     if (currentUser) {
       hintField = 'Сохранить статью';
     } else {
       hintField = 'Войдите, чтобы сохранять статьи';
     }
-    if (data.elId) {
+    /*if (data.elId) {
       classForFlag = 'news-grid__flag news-grid__flag_type_marked';
     } else {
       classForFlag = 'news-grid__flag';
-    }
+    }*/
 
     const timeOptions = {
       year: 'numeric',

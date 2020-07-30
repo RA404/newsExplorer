@@ -91,12 +91,14 @@ export default class NewsCardList {
   addNews(apiLinkArticles, arrItem) {
     return new Promise(function (resolve, reject) {
 
+      const itemContent = (arrItem.description === null || arrItem.description === "") ? arrItem.content : arrItem.description;
+
       fetch(apiLinkArticles,
         {
           method: 'POST',
           body: JSON.stringify({
             title: arrItem.title,
-            text: arrItem.content,
+            text: itemContent,
             keyword: arrItem.keyword,
             date: arrItem.publishedAt,
             source: arrItem.source.name,

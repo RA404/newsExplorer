@@ -18,8 +18,8 @@ export default class NewsApi {
     this._hide(this.articlesDOM);
 
     // получим текущую дату и дату 7 дней назад
-    let dateToday = new Date();
-    let datePastWeek = new Date();
+    const dateToday = new Date();
+    const datePastWeek = new Date();
     datePastWeek.setDate(datePastWeek.getDate() - 7);
 
     const apiLink = `${this.apiURL}?q="${querystrung}"&from=${dateToday}&to=${datePastWeek}&apiKey=${this.apiKey}`;

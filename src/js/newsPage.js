@@ -23,9 +23,9 @@ let currentUser = {};
 var myNewsArr = []; // сохраненные карточки нужно видеть во всех областях видимости, тогда будем локально с ними работать и реже дергать сервер
 
 // найдем элементы управления на странице
-const logoutHeaderButton = document.querySelectorAll('.authorization-button__text_status_logged-out');
-const loginImg = document.querySelectorAll('.authorization-button__image');
-const loginHeaderButton = document.querySelectorAll('.authorization-button__text_status_logged-in');
+const logoutHeaderButtons = document.querySelectorAll('.authorization-button__text_status_logged-out');
+const loginImgs = document.querySelectorAll('.authorization-button__image');
+const loginHeaderButtons = document.querySelectorAll('.authorization-button__text_status_logged-in');
 const authorizationButtonsList = document.querySelectorAll('.authorization-button');
 
 // найдем блоки и элементы на странице
@@ -50,7 +50,7 @@ authorizationButtonsList.forEach(function (item) {
       // если разлогинились занулим переменную currentUser
       currentUser = {};
       // перерисуем хэдэр
-      header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+      header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImg, menuSavedArticles);
       // сделаем редирект на главную
       document.location.href = '/';
       // перезагрузим страницу
@@ -63,7 +63,7 @@ authorizationButtonsList.forEach(function (item) {
           // если разлогинились занулим переменную currentUser
           currentUser = {};
           // перерисуем хэдэр
-          header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+          header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
           // сделаем редирект на главную
           document.location.href = '/';
           // перезагрузим страницу
@@ -72,7 +72,7 @@ authorizationButtonsList.forEach(function (item) {
         .catch((err) => {
           currentUser = {};
           // перерисуем хэдэр
-          header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+          header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
           // сделаем редирект на главную
           document.location.href = '/';
           // перезагрузим страницу
@@ -84,18 +84,18 @@ authorizationButtonsList.forEach(function (item) {
 
 // обработка кликов по списку карточек
 newsContainerDom.addEventListener('click', () => {
-  console.log(event);
+
   if (event.target.classList.contains('news-grid__bin')) {
     // кликнули прямо на корзину, удаляем карточку и с бэкенда и из дом элемента и из массива
 
     // получим DOM элемент карточку
-    let newsDomElement = getDomNews(event.target);
+    const newsDomElement = getDomNews(event.target);
 
     // найдем ссылку на новость и проверим есть ли такая новость в уже сохраненных
     const urlNews = newsDomElement.querySelector('.news-grid__url');
     if (urlNews) {
-      let elId = thisNewsExist(myNewsArr, urlNews.textContent);
-      let delArticlesPromise = newsCardList.deleteNews(apiLinkArticles, elId);
+      const elId = thisNewsExist(myNewsArr, urlNews.textContent);
+      const delArticlesPromise = newsCardList.deleteNews(apiLinkArticles, elId);
       delArticlesPromise
         .then((deletedArticles) => {
 
@@ -126,7 +126,7 @@ newsContainerDom.addEventListener('click', () => {
     // если кликнули просто в поле, то ничего не делаем, не тратим ресурсы
   } else {
     // получим DOM элемент
-    let newsDomElement = getDomNews(event.target);
+    const newsDomElement = getDomNews(event.target);
     // найдем ссылку на новость и откроем ее в новом окне
     const urlNews = newsDomElement.querySelector('.news-grid__url');
     if (urlNews) {
@@ -140,7 +140,7 @@ newsContainerDom.addEventListener('click', () => {
 // проверим, не залогинен ли пользователь
 if (!currentUser.name) {
   // если в куках лежит не просроченный jwt ключ залогинимся
-  let currentUserPromise = accountApi.getCurrentUser(apiLinkLogin);
+  const currentUserPromise = accountApi.getCurrentUser(apiLinkLogin);
   currentUserPromise
     .then((user) => {
       currentUser.name = user.data.name;
@@ -148,7 +148,7 @@ if (!currentUser.name) {
       currentUser._id = user.data._id;
 
       // пулочим массив уже сохраненных карточек
-      let myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
+      const myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
       myNewsArrPromise
         .then((articles) => {
           myNewsArr = [];
@@ -159,7 +159,7 @@ if (!currentUser.name) {
           })
 
           titleContainer.textContent = `${currentUser.name}, у вас ${myNewsArr.length} сохраненных статей`;
-          let keywordsString = getKeywordsString(keywordsList);
+          const keywordsString = getKeywordsString(keywordsList);
           subtitleContainer.textContent = keywordsString;
 
           // очистим секцию и выведем результат
@@ -171,18 +171,18 @@ if (!currentUser.name) {
         })
 
       // перерисуем хэдэр
-      header.setAuthorizedHeader(currentUser.name, logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+      header.setAuthorizedHeader(currentUser.name, logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
     })
     .catch((err) => {
       //в куках нет действующего ключа
       currentUser = {};
       // перерисуем хэдэр
-      header.setNonAuthorizedHeader('', logoutHeaderButton, loginHeaderButton, loginImg, menuSavedArticles);
+      header.setNonAuthorizedHeader('', logoutHeaderButtons, loginHeaderButtons, loginImgs, menuSavedArticles);
       titleContainer.textContent = '';
     })
 } else {
   // если пользователь залогинен, то получим его сохраненные карточки
-  let myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
+  const myNewsArrPromise = newsCardList.getMyNews(apiLinkArticles);
   myNewsArrPromise
     .then((articles) => {
       myNewsArr = [];

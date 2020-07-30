@@ -8,18 +8,18 @@ export default class Header extends BaseComponent {
 
   }
 
-setAuthorizedHeader(userName, logoutButton, loginButton, loginImg, menuSavedItems) {
+setAuthorizedHeader(userName, logoutButtons, loginButtons, loginImgs, menuSavedItems) {
 
-  logoutButton.forEach(element => {
+  logoutButtons.forEach(element => {
     element.classList.add('authorization-button_logout');
   });
 
-  loginButton.forEach(element => {
+  loginButtons.forEach(element => {
     element.textContent = userName;
     element.classList.remove('authorization-button_logout');
   });
 
-  loginImg.forEach(element => {
+  loginImgs.forEach(element => {
     element.classList.remove('authorization-button_logout');
   });
 
@@ -30,18 +30,18 @@ setAuthorizedHeader(userName, logoutButton, loginButton, loginImg, menuSavedItem
 
 }
 
-setNonAuthorizedHeader(userName, logoutButton, loginButton, loginImg, menuSavedItems) {
+setNonAuthorizedHeader(userName, logoutButtons, loginButtons, loginImgs, menuSavedItems) {
 
-  logoutButton.forEach(element => {
+  logoutButtons.forEach(element => {
     element.classList.remove('authorization-button_logout');
   });
 
-  loginButton.forEach(element => {
+  loginButtons.forEach(element => {
     element.textContent = 'Авторизоваться';
     element.classList.add('authorization-button_logout');
   });
 
-  loginImg.forEach(element => {
+  loginImgs.forEach(element => {
     element.classList.add('authorization-button_logout');
   });
 

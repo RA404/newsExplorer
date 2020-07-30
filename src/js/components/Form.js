@@ -7,28 +7,4 @@ export default class Form extends BaseComponent {
 
   }
 
-  getTemplate() {
-
-  }
-
-  setServerError() {
-
-  }
-
-  _validateInputElement() {
-
-  }
-
-  _validateForm() {
-
-  }
-
-  _clear() {
-
-  }
-
-  _getInfo() {
-
-  }
-
 }
