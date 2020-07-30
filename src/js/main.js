@@ -146,9 +146,9 @@ signupButton.addEventListener('click', () => {
   event.preventDefault();
 
   //получим пользователя с сервера
-  const emailField = document.forms.signupForm.elements.email.value;
-  const passField = document.forms.signupForm.elements.password.value;
-  const nameField = document.forms.signupForm.elements.name.value;
+  const emailField = escape(document.forms.signupForm.elements.email.value);
+  const passField = escape(document.forms.signupForm.elements.password.value);
+  const nameField = escape(document.forms.signupForm.elements.name.value);
 
   const newUser = accountApi.getNewUser(apiLinkSignup, emailField, passField, nameField);
   newUser
@@ -167,8 +167,8 @@ signupButton.addEventListener('click', () => {
 signinButton.addEventListener('click', () => {
   event.preventDefault();
 
-  const emailField = document.forms.loginForm.elements.email.value;
-  const passField = document.forms.loginForm.elements.password.value;
+  const emailField = escape(document.forms.loginForm.elements.email.value);
+  const passField = escape(document.forms.loginForm.elements.password.value);
 
   //получим карточки с сервера
   const promiseToken = accountApi.getToken(apiLinkSignin, emailField, passField);

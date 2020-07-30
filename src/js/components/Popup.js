@@ -19,11 +19,7 @@ export default class Popup extends BaseComponent {
     // привяжем this к методам
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
-    //this._login = this._login.bind(this);
-    // this._signup = this._signup.bind(this);
     this.setHeading = this.setHeading.bind(this);
-    /*this._openSignupForm = this._openSignupForm.bind(this);
-    this._openSigninForm = this._openSigninForm.bind(this);*/
 
     // найдем элемент закрытия папапа
     const closeButton = this.domElement.querySelector('.popup__close');
@@ -54,14 +50,6 @@ export default class Popup extends BaseComponent {
         this.nameField.addEventListener('input', this._validation.bind(this, this.nameField));
       }
     }
-
-    /*if (this.loginButton) {
-      this.loginButton.addEventListener('click', this._login);
-    }
-
-    if (this.signupButton) {
-      this.signupButton.addEventListener('click', this._signup);
-    }*/
 
     // обработка кнопок смены попапа, текущий попап нужно закрыть в любом случае
     if (this.openSignupPopupLink) {
