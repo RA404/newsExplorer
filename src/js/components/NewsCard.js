@@ -1,9 +1,9 @@
 export default class NewsCard {
   constructor() {
-
+    this._sanitizeHTMLUpdate = this._sanitizeHTMLUpdate.bind(this);
   }
 
-  getTemplate(data, currentUser=false) {
+  getTemplate(data, currentUser = false) {
     //описание может быть пустым, в таком случае подставляем контент
     const desc = data.description === null ? data.content : data.description;
     const classForFlag = data.elId ? 'news-grid__flag news-grid__flag_type_marked' : 'news-grid__flag';
@@ -13,11 +13,6 @@ export default class NewsCard {
     } else {
       hintField = 'Войдите, чтобы сохранять статьи';
     }
-    /*if (data.elId) {
-      classForFlag = 'news-grid__flag news-grid__flag_type_marked';
-    } else {
-      classForFlag = 'news-grid__flag';
-    }*/
 
     const timeOptions = {
       year: 'numeric',
@@ -35,9 +30,9 @@ export default class NewsCard {
         <img class="news-grid__item-image" src="${data.urlToImage}">
         <figcaption class="news-grid__item-description">
           <p class="news-grid__date">${dateString}</p>
-          <h3 class="content-title content-title_type_news-title">${data.title}</h3>
-          <p class="news-grid__text">${desc}</p>
-          <p class="news-grid__source">${data.source.name}</p>
+          <h3 class="content-title content-title_type_news-title">${this._sanitizeHTMLUpdate(data.title)}</h3>
+          <p class="news-grid__text">${this._sanitizeHTMLUpdate(desc)}</p>
+          <p class="news-grid__source">${this._sanitizeHTMLUpdate(data.source.name)}</p>
         </figcaption>
       </figure>
     `;
@@ -57,18 +52,24 @@ export default class NewsCard {
     const template = `
       <figure class="news-grid__item">
         <div class="news-grid__url">${data.link}</div>
-        <div class="news-grid__keywords">${data.keyword}</div>
+        <div class="news-grid__keywords">${this._sanitizeHTMLUpdate(data.keyword)}</div>
         <div class="news-grid__bin"></div>
         <div class="news-grid__hint">Убрать из сохраненных</div>
         <img class="news-grid__item-image" src="${data.image}">
         <figcaption class="news-grid__item-description">
           <p class="news-grid__date">${dateString}</p>
-          <h3 class="content-title content-title_type_news-title">${data.title}</h3>
-          <p class="news-grid__text">${data.text}</p>
-          <p class="news-grid__source">${data.source}</p>
+          <h3 class="content-title content-title_type_news-title">${this._sanitizeHTMLUpdate(data.title)}</h3>
+          <p class="news-grid__text">${this._sanitizeHTMLUpdate(data.text)}</p>
+          <p class="news-grid__source">${this._sanitizeHTMLUpdate(data.source)}</p>
         </figcaption>
       </figure>
     `;
     return template;
   }
+
+  _sanitizeHTMLUpdate(str) {
+    let temp = str.replace(/[.*+?^${}()<>|[\]\\]/g, '\\$&'); return temp;
+  }
+
 }
+
