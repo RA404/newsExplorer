@@ -419,3 +419,6 @@ window.addEventListener('keydown', function closeFormByKeydown(event) {
     popupRegistered.close();
   }
 });
+
+import '../pages/mainPage/index.css';
+

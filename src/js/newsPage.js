@@ -199,3 +199,5 @@ if (!currentUser.name) {
       console.log(err);
     })
 }
+
+import '../pages/newsPage/index.css';
