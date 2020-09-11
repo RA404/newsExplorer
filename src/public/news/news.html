@@ -23,14 +23,14 @@
               <li class="menu__item">
                 <a class="menu__link" href="./index.html">Главная</a>
               </li>
-              <li class="menu__item menu__item_active_black">
+              <li class="menu__item menu__item_saved_articles menu__item_active_black menu__item_status_logged-out">
                 <a class="menu__link " href="./news.html">Сохраненные статьи</a>
               </li>
             </ul>
             <button class="authorization-button">
-              <span class="authorization-button__text authorization-button__text_status_logged-in">Грета</span>
-              <img class="authorization-button__image" src="<%=require('../../images/logoutBlack.svg')%>" alt="logout icon">
-              <span class="authorization-button__text authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
+              <span class="authorization-button__text authorization-button__text_status_logged-in authorization-button_logout">Грета</span>
+              <img class="authorization-button__image authorization-button_logout" src="<%=require('../../images/logoutBlack.svg')%>" alt="logout icon">
+              <span class="authorization-button__text authorization-button__text_status_logged-out">Авторизоваться</span>
             </button>
           </nav>
           <nav class="hamburger-menu">
@@ -47,14 +47,14 @@
                 <li class="hamburger-menu__item">
                   <a class="hamburger-menu__link" href="./index.html">Главная</a>
                 </li>
-                <li class="hamburger-menu__item">
+                <li class="hamburger-menu__item menu__item_saved_articles hamburger-menu__item_status_logged-out">
                   <a class="hamburger-menu__link" href="./news.html">Сохраненные статьи</a>
                 </li>
               </ul>
               <button class="authorization-button authorization-button_theme_dark authorization-button_type_mobile">
-                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in">Грета</span>
-                <img class="authorization-button__image" src="<%=require('../../images/logoutWhite.svg')%>" alt="logout icon">
-                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out authorization-button_logout">Авторизоваться</span>
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-in authorization-button_logout">Грета</span>
+                <img class="authorization-button__image authorization-button_logout" src="<%=require('../../images/logoutWhite.svg')%>" alt="logout icon">
+                <span class="authorization-button__text authorization-button__text_theme_dark authorization-button__text_status_logged-out">Авторизоваться</span>
               </button>
             </div>
           </nav>
@@ -69,75 +69,7 @@
           </section>
           <section class="saved-news">
             <div class="news-grid news-grid_position_center">
-              <figure class="news-grid__item">
-                <div class="news-grid__keywords">Природа</div>
-                <div class="news-grid__bin"></div>
-                <div class="news-grid__hint">Убрать из сохраненных</div>
-                <img class="news-grid__item-image" src="<%=require('../../images/news1.png')%>" alt="Национальное достояние – парки">
-                <figcaption class="news-grid__item-description">
-                  <p class="news-grid__date">2 августа, 2019</p>
-                  <h3 class="content-title content-title_type_news-title">Национальное достояние – парки</h3>
-                  <p class="news-grid__text">В 2016 году Америка отмечала важный юбилей:
-                    сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
-                    где и сегодня каждый может приобщиться к природе.</p>
-                  <p class="news-grid__source">Лента.ру</p>
-                </figcaption>
-              </figure>
-              <figure class="news-grid__item">
-                <div class="news-grid__keywords">Природа</div>
-                <div class="news-grid__bin"></div>
-                <div class="news-grid__hint">Убрать из сохраненных</div>
-                <img class="news-grid__item-image" src="<%=require('../../images/news2.png')%>" alt="Национальное достояние – парки">
-                <figcaption class="news-grid__item-description">
-                  <p class="news-grid__date">2 августа, 2019</p>
-                  <h3 class="content-title content-title_type_news-title">Лесные огоньки: история одной фотографии</h3>
-                  <p class="news-grid__text">Фотограф отвлеклась от освещения суровой политической реальности Мексики,
-                    чтобы запечатлеть ускользающую красоту одного из местных чудес природы.</p>
-                  <p class="news-grid__source">Медуза</p>
-                </figcaption>
-              </figure>
-              <figure class="news-grid__item">
-                <div class="news-grid__keywords">Тайга</div>
-                <div class="news-grid__bin"></div>
-                <div class="news-grid__hint">Убрать из сохраненных</div>
-                <img class="news-grid__item-image" src="<%=require('../../images/news3.png')%>" alt="Национальное достояние – парки">
-                <figcaption class="news-grid__item-description">
-                  <p class="news-grid__date">2 августа, 2019</p>
-                  <h3 class="content-title content-title_type_news-title">«Первозданная тайга»: новый фотопроект Игоря Шпиленка</h3>
-                  <p class="news-grid__text">Знаменитый фотограф снимает первозданные леса России,
-                    чтобы рассказать о необходимости их сохранения.
-                    В этот раз он отправился в Двинско-Пинежскую тайгу, где...</p>
-                  <p class="news-grid__source">Риа</p>
-                </figcaption>
-              </figure>
-              <figure class="news-grid__item">
-                <div class="news-grid__keywords">Природа</div>
-                <div class="news-grid__bin"></div>
-                <div class="news-grid__hint">Убрать из сохраненных</div>
-                <img class="news-grid__item-image" src="<%=require('../../images/news4.png')%>" alt="Национальное достояние – парки">
-                <figcaption class="news-grid__item-description">
-                  <p class="news-grid__date">2 августа, 2019</p>
-                  <h3 class="content-title content-title_type_news-title">Национальное достояние – парки</h3>
-                  <p class="news-grid__text">В 2016 году Америка отмечала важный юбилей:
-                    сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
-                    где и сегодня каждый может приобщиться к природе.</p>
-                  <p class="news-grid__source">Лента.ру</p>
-                </figcaption>
-              </figure>
-              <figure class="news-grid__item">
-                <div class="news-grid__keywords">Природа</div>
-                <div class="news-grid__bin"></div>
-                <div class="news-grid__hint">Убрать из сохраненных</div>
-                <img class="news-grid__item-image" src="<%=require('../../images/news5.png')%>" alt="Национальное достояние – парки">
-                <figcaption class="news-grid__item-description">
-                  <p class="news-grid__date">2 августа, 2019</p>
-                  <h3 class="content-title content-title_type_news-title">Национальное достояние – парки</h3>
-                  <p class="news-grid__text">В 2016 году Америка отмечала важный юбилей:
-                    сто лет назад здесь начала складываться система национальных парков – охраняемых территорий,
-                    где и сегодня каждый может приобщиться к природе.</p>
-                  <p class="news-grid__source">Лента.ру</p>
-                </figcaption>
-              </figure>
+
             </div>
           </section>
         </main>

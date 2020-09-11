@@ -7,3 +7,5 @@
 @import url('../../blocks/main/main.css');
 @import url('../../blocks/overlay/overlay.css');
 @import url('../../blocks/footer/footer.css');
+@import url('../../blocks/popup/__overlay/popup__overlay.css');
+@import url('../../blocks/footer/footer.css');

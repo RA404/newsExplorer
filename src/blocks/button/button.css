@@ -1,4 +1,5 @@
 @import url('./__text/button__text.css');
+@import url('./_hide/button_hide.css');
 
 .button {
   border-radius: 80px;

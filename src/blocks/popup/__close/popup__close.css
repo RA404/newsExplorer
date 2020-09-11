@@ -5,6 +5,7 @@
   top: -46px;
   right: -46px;
   cursor: pointer;
+  z-index: 10;
 }
 
 @media (max-width: 719px) {
