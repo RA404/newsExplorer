@@ -16,13 +16,13 @@ v0.0.2
 * Deploy to gh-pages "npm run deploy_gh"
 
 ## GitHub Pages
-[https://ra404.github.io/newsExplorer/](https://ra404.github.io/newsExplorer/)
+[https://](https://) Sorry, this link is not available anymore
 
 ## Domain for production version
-[https://ra404.ru](https://ra404.ru)
+[https://](https://) Sorry, this link is not available anymore
 
 ## Backend
-[https://api.ra404.ru](https://api.ra404.ru)
+[https://](https://) Sorry, this link is not available anymore
 
 #### Production version в папке dist
 #### Development version в папке src
